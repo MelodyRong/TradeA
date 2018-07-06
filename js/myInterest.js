@@ -64,6 +64,7 @@ $(function(){
         if(data.retcode == 0) {
             console.log(data);
             var retData = data.respbody.dataList;
+            var total = data.respbody.total;
             //当前无收藏时提示暂无数据
             if (retData.length == 0) {
                 $("#content_bottom").html("收藏夹已经饿扁了，快去找找自己喜欢的商品吧！");
@@ -342,7 +343,6 @@ $(function(){
                     window.sessionStorage.setItem("COMMODITYID", this.accessKey);
                     window.location.href = "DetailsPage.html";
                 }
-
             })
         }else{
             if(data.retcode == -17401){

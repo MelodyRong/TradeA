@@ -64,7 +64,7 @@ var free;
 var condition;
 //默认的有效期时间
 var validityDate;
-
+var oriPrice;   //基础价
 //蒙版的高度等于文档的高度
 $("#maskLayer").css("height", $(document).height());
 
@@ -257,10 +257,10 @@ function ccc() {
         "sessionStr": sessionStr
     });
     httpAjax(httpheader, referencePriceData, referencePriceSuccess);
-
     function referencePriceSuccess(data) {
         if (data.retcode == 0) {
             console.log(data);
+            oriPrice = data.respbody.oriPrice;
             $("#referenceMoney").prop("placeholder", "参考价:" + data.respbody.referencePrice);
         } else {
             if (data.retcode == -17401) {
@@ -701,11 +701,11 @@ $("#submitStorage").click(function () {
             }
         }
         function deal() {
-            //价格   是否填写价格，价格与参考价相比
+            //价格   是否填写价格，价格与基础价相比
             if ($("#referenceMoney").val() == "") {
                 myToast("请填写商品价格");
                 return false;
-            } else if (Number($("#referenceMoney").val()) < Number($("#referenceMoney").attr("placeholder").slice(4))) {
+            } else if (Number($("#referenceMoney").val()) < Number(oriPrice)) {
                 myToast("发布购入价不能低于发行价");
                 return false;
             }

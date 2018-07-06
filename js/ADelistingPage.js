@@ -428,7 +428,7 @@ if (BuyOrSell == 1) {
                         var orderIdList = data.respbody.arrayList;
                         for (var d = 0; d < orderIdList.length; d++) {   //循环得到listOrderID
                             var listList = {};
-                            listList.listOrderId = orderIdList[d].orderID;
+                            listList.listOrderId = String(orderIdList[d].orderID);
                             listOrderIdList.push(listList);
                         }
                         var addressDatailData = JSON.stringify({    //判断是否完善信息
@@ -487,6 +487,7 @@ if (BuyOrSell == 1) {
                                                         "name": "onekeyListTradeBuy",
                                                         "sessionStr": sessionStr
                                                     });
+                                                    console.log(QbuyData);
                                                     homePageAjax(httpheader, QbuyData, QSellData);
 
                                                     function QSellData(data2) {
