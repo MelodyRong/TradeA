@@ -54,7 +54,40 @@ $(function () {
     //从sess中获取用户登录状态
     var loginStatus = window.sessionStorage.getItem("LOGINSTATE");
     console.log(loginStatus);
+    //取到firmType和isChecked
+    var firmType = window.sessionStorage.getItem("FIRMTYPE");
+    var isChecked = window.sessionStorage.getItem("ISCHECKED");
+   if (firmType == 6) {   //6企业账户
+        if(isChecked == 0){   //0正在审核中
+            myAlert({
+                title: '提示',
+                message: '您的账号正在审核中，还不能进行入库',
+                callback: function () {
 
+                }
+            });
+        }
+    }else if (firmType == 3) {   //3企业账户
+        if(isChecked == 0){   //0正在审核中
+            myAlert({
+                title: '提示',
+                message: '您的账号正在审核中，还不能进行入库',
+                callback: function () {
+
+                }
+            });
+        }
+    }else if (firmType == 5) {   //6企业账户
+        if(isChecked == 0){   //0正在审核中
+            myAlert({
+                title: '提示',
+                message: '您的账号正在审核中，还不能进行入库',
+                callback: function () {
+
+                }
+            });
+        }
+    }
     function formatDateTime(inputTime) {
         var date = new Date(inputTime);
         var y = date.getFullYear();
@@ -153,61 +186,76 @@ $(function () {
             window.sessionStorage.setItem("LOGINSOURCE", 1);
             window.location.href = "loginPage.html";
         } else {
-            //入库商品名称
-            var commodityName = $("#commodityName").val();
-            console.log(typeof (commodityName));
-            if (commodityName == "") {
-                myToast("请输入入库商品名称");
-                return false;
+            //取到firmType和isChecked
+            var firmType = window.sessionStorage.getItem("FIRMTYPE");
+            var isChecked = window.sessionStorage.getItem("ISCHECKED");
+            if (firmType == 1) {   //1个人账户
+                deal();
+            } else if (firmType == 6) {   //6企业账户
+                if(isChecked == 0){   //0正在审核中
+                    myToast("您的账号正在审核中，还不能进行交易");
+                    return false;
+                }else if(isChecked == 1){   //已审核
+                    deal();
+                }
             }
-            console.log(commodityName);   //name
-            //入库商品数量
-            var commodityNumber = $("#commodityNumber").val();
-            console.log(typeof (commodityNumber));
-            if (commodityNumber == "") {
-                myToast("请输入入库商品数量");
-                return false;
-            }else if(commodityNumber == 0){
-                myToast("请输入大于0的入库商品数量");
-                return false;
-            }else if(!(/^[0-9]+$/.test(commodityNumber))){
-                myToast("请输入整数的入库商品数量");
-                return false;
+            function deal(){
+                //入库商品名称
+                var commodityName = $("#commodityName").val();
+                console.log(typeof (commodityName));
+                if (commodityName == "") {
+                    myToast("请输入入库商品名称");
+                    return false;
+                }
+                console.log(commodityName);   //name
+                //入库商品数量
+                var commodityNumber = $("#commodityNumber").val();
+                console.log(typeof (commodityNumber));
+                if (commodityNumber == "") {
+                    myToast("请输入入库商品数量");
+                    return false;
+                }else if(commodityNumber == 0){
+                    myToast("请输入大于0的入库商品数量");
+                    return false;
+                }else if(!(/^[0-9]+$/.test(commodityNumber))){
+                    myToast("请输入整数的入库商品数量");
+                    return false;
+                }
+                console.log(commodityNumber);  //number
+                //申请日期(最小时间为今天)
+                var applyDate = $("#applyDate").val();
+                console.log(applyDate);
+                console.log(typeof (applyDate));
+                if (applyDate == "") {
+                    myToast("请选择入库申请日期");
+                    return false;
+                } else if(new Date(Date.parse($("#applyDate").val())) < Number(new Date())-(24*60*60*1000)){
+                    myToast("日期选择错误");
+                    return false;
+                }
+                // else if (new Date($("#applyDate").val()).getTime() < new Date().getTime()) {
+                //     myToast("发行时间选择错误");
+                //     return false;
+                // }
+                //仓库ID
+                var warehouseID = $("#warehouse").val();
+                console.log(warehouseID);
+                //确认申请入库
+                var putInStorageData = JSON.stringify({
+                    "ctype": "Web",
+                    "name": "addStorageApplication",
+                    "reqbody": {
+                        "applicationStatus": 0,
+                        "commodityName": commodityName,
+                        "inStorageDate": applyDate,
+                        "inStorageQty": commodityNumber,
+                        "storageID": warehouseID
+                    },
+                    "sessionStr": sessionStr,
+                    "userid": userID
+                });
+                homePageAjax(httpheader, putInStorageData, putInStorageSuccess);
             }
-            console.log(commodityNumber);  //number
-            //申请日期(最小时间为今天)
-            var applyDate = $("#applyDate").val();
-            console.log(applyDate);
-            console.log(typeof (applyDate));
-            if (applyDate == "") {
-                myToast("请选择入库申请日期");
-                return false;
-            } else if(new Date(Date.parse($("#applyDate").val())) < Number(new Date())-(24*60*60*1000)){
-                myToast("日期选择错误");
-                return false;
-            }
-            // else if (new Date($("#applyDate").val()).getTime() < new Date().getTime()) {
-            //     myToast("发行时间选择错误");
-            //     return false;
-            // }
-            //仓库ID
-            var warehouseID = $("#warehouse").val();
-            console.log(warehouseID);
-            //确认申请入库
-            var putInStorageData = JSON.stringify({
-                "ctype": "Web",
-                "name": "addStorageApplication",
-                "reqbody": {
-                    "applicationStatus": 0,
-                    "commodityName": commodityName,
-                    "inStorageDate": applyDate,
-                    "inStorageQty": commodityNumber,
-                    "storageID": warehouseID
-                },
-                "sessionStr": sessionStr,
-                "userid": userID
-            });
-            homePageAjax(httpheader, putInStorageData, putInStorageSuccess);
         }
     };
 

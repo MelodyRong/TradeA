@@ -404,6 +404,20 @@ $("#purchase_purchase_btn").click(function(){
             }else if(isChecked == 1){   //已审核
                 deal();
             }
+        }else if (firmType == 3) {   //3个人分销商账户
+            if(isChecked == 0){   //0正在审核中
+                myToast("您的账号正在审核中，还不能进行交易");
+                return false;
+            }else if(isChecked == 1){   //已审核
+                deal();
+            }
+        }else if (firmType == 5) {   //5企业分销商账户
+            if(isChecked == 0){   //0正在审核中
+                myToast("您的账号正在审核中，还不能进行交易");
+                return false;
+            }else if(isChecked == 1){   //已审核
+                deal();
+            }
         }
         function deal() {
             if($("#purchase_quantity_inp").val() == ""){

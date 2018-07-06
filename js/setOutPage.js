@@ -71,7 +71,7 @@ $("#buynumber").html(quantity);
 //sess中获取总金额
 var zPrice = window.sessionStorage.getItem("ZBUYPRICE");
 console.log(zPrice);
-$("#span1").html(zPrice + "元");
+$("#span1").html(zPrice);
 //sess中获取是否全款    1全款0分期
 var isStage = window.sessionStorage.getItem("ISSTAGE");
 console.log(isStage);
@@ -113,20 +113,6 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
         $("#fkfs").css("display", "none");  //隐藏付款方式选择
         $("#FQhintt").css("display","none");    //隐藏尾款支付提示
         $("#pick_hang_footerbtn").click(function () {   //点击确认下单   摘购（卖）没有全款和分期之区别    摘售（买）区分全款和分期
-            //取到firmType和isChecked
-            var firmType = window.sessionStorage.getItem("FIRMTYPE");
-            var isChecked = window.sessionStorage.getItem("ISCHECKED");
-            if (firmType == 1) {   //1个人账户
-                deal();
-            } else if (firmType == 6) {   //6企业账户
-                if(isChecked == 0){   //0正在审核中
-                    myToast("您的账号正在审核中，还不能进行交易");
-                    return false;
-                }else if(isChecked == 1){   //已审核
-                    deal();
-                }
-            }
-            function deal() {
                 allcommodityAjax(httpheader, addressDatailData, addressDatailSuccess);   //请求完善信息接口
                 function addressDatailSuccess(data) {    //请求完善信息成功函数
                     if(data.retcode == 0){
@@ -206,7 +192,6 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
                         }
                     }
                 }
-            }
         })
     } else if (bsFlag == 2) {  //1摘购2摘售
         var radio = $(".inp");   //改变付款方式，如是全款隐藏首付金额和尾款支付提示   如是分期显示首付金额和尾款支付提示
@@ -220,22 +205,8 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
             }
         });
         $("#pick_hang_footerbtn").click(function () {   //点击确认下单   摘购（卖）没有全款和分期之区别    摘售（买）区分全款和分期
-            //取到firmType和isChecked
-            var firmType = window.sessionStorage.getItem("FIRMTYPE");
-            var isChecked = window.sessionStorage.getItem("ISCHECKED");
-            if (firmType == 1) {   //1个人账户
-                deal();
-            } else if (firmType == 6) {   //6企业账户
-                if(isChecked == 0){   //0正在审核中
-                    myToast("您的账号正在审核中，还不能进行交易");
-                    return false;
-                }else if(isChecked == 1){   //已审核
-                    deal();
-                }
-            }
-            function deal() {
-                allcommodityAjax(httpheader, addressDatailData, addressDatailSuccess);   //请求完善信息接口
-                function addressDatailSuccess(data) {
+            allcommodityAjax(httpheader, addressDatailData, addressDatailSuccess);   //请求完善信息接口
+            function addressDatailSuccess(data) {
                     if(data.retcode == 0){
                         var retData = data.respbody.list;
                         if (retData.length == 0) {
@@ -255,10 +226,10 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
                                     for (var i = 0; i < obj.length; i++) {
                                         if (obj[i].checked) {
                                             if (obj[i].value == "全款") {
-                                                var totalMoney = Number(data.respbody.free) + Number(zPrice) + "元";     //商品金额+手续费
+                                                var totalMoney = Number(data.respbody.free) + Number(zPrice);     //商品金额+手续费
                                                 myConfirm({
                                                     title: "提示",
-                                                    message: "商品手续费一次性" + (data.respbody.free).toFixed(2) + "元" + "<br/>" + "付款金额" + (totalMoney).toFixed(2),
+                                                    message: "商品手续费一次性" + (data.respbody.free).toFixed(2) + "元" + "<br/>" + "付款金额" + totalMoney.toFixed(2) + "元",
                                                     callback: function () {
                                                         var qkData = JSON.stringify({
                                                             "ctype": "Web",
@@ -359,7 +330,6 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
                         }
                     }
                 }
-            }
         });
     }
 } else if (isStage == 0) {       //0全款  1分期    商品仅支持全款的情况下，摘购（卖）和摘售（买）都不区分全款和分期
@@ -369,20 +339,6 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
         $("#FQhintt").css("display","none");    //隐藏尾款支付提示
         var orderId = window.sessionStorage.getItem("ORDERID");
         $("#pick_hang_footerbtn").click(function () {
-            //取到firmType和isChecked
-            var firmType = window.sessionStorage.getItem("FIRMTYPE");
-            var isChecked = window.sessionStorage.getItem("ISCHECKED");
-            if (firmType == 1) {   //1个人账户
-                deal();
-            } else if (firmType == 6) {   //6企业账户
-                if(isChecked == 0){   //0正在审核中
-                    myToast("您的账号正在审核中，还不能进行交易");
-                    return false;
-                }else if(isChecked == 1){   //已审核
-                    deal();
-                }
-            }
-            function deal() {
                 if (bsFlag == 1) {   //摘购（卖）   先请求完善信息再请求手续费
                     var addressDatailData = JSON.stringify({
                         "ctype": "Web",
@@ -482,11 +438,12 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
                             } else {
                                 allcommodityAjax(httpheader, serviceChargeData("101"), serviceChargeSuccess);   //点击下单请求手续费
                                 function serviceChargeSuccess(data1) {
+                                    console.log(data1);
                                     if (data1.retcode == 0) {
-                                        var totalMoney = Number(data1.respbody.free) + Number(zPrice) + "元";     //商品金额+手续费
+                                        var totalMoney = Number(data1.respbody.free) + Number(zPrice);     //商品金额+手续费
                                         myConfirm({
                                             title: "提示",
-                                            message: "商品手续费一次性：" + (data1.respbody.free).toFixed(2) + "元" + "<br>" + "总付金额：" + (totalMoney).toFixed(2) + "元",
+                                            message: "商品手续费一次性：" + (data1.respbody.free).toFixed(2) + "元" + "<br>" + "总付金额：" + totalMoney.toFixed(2) + "元",
                                             callback: function () {
                                                 var qkData = JSON.stringify({
                                                     "ctype": "Web",
@@ -553,7 +510,6 @@ if (isStage == 1) {    //0全款  1分期   分期情况下摘购（卖）没有
                         window.location.href = "loginPage.html";
                     }
                 }
-            }
         });
     }
 

@@ -290,123 +290,152 @@ $(function () {
             //通过摘按钮进入setOut页面
             $(".spanS").click(function () {
                 var that = this;
-                //商品名称  retData.name
-                //window.sessionStorage.setItem("PRODUCTNAME",retData.name);
-                //摘售还是摘购  ListArrX.bsFlag
-                //商品ID   ListArr.commodityId
-                //购买人姓名  ListArrX.firmName
-                //单价  ListArrX.listPrice
-                //数量 ListArrX.quantity
-                //首期比例 retData.listDepositRate
-                //orderId ListArrX.orderID
-                //该商品是否支持分期   retData.isStage
-                //该商品是否持仓 ListArrX.status
+                //取到firmType和isChecked
+                var firmType = window.sessionStorage.getItem("FIRMTYPE");
+                var isChecked = window.sessionStorage.getItem("ISCHECKED");
+                if (firmType == 1) {   //1个人账户
+                    deal();
+                } else if (firmType == 6) {   //6企业账户
+                    if(isChecked == 0){   //0正在审核中
+                        myToast("您的账号正在审核中，还不能进行交易");
+                        return false;
+                    }else if(isChecked == 1){   //已审核
+                        deal();
+                    }
+                }else if (firmType == 3) {   //3个人分销商账户
+                    if(isChecked == 0){   //0正在审核中
+                        myToast("您的账号正在审核中，还不能进行交易");
+                        return false;
+                    }else if(isChecked == 1){   //已审核
+                        deal();
+                    }
+                }else if (firmType == 5) {   //5企业分销商账户
+                    if(isChecked == 0){   //0正在审核中
+                        myToast("您的账号正在审核中，还不能进行交易");
+                        return false;
+                    }else if(isChecked == 1){   //已审核
+                        deal();
+                    }
+                }
+                function deal() {
+                    //商品名称  retData.name
+                    //window.sessionStorage.setItem("PRODUCTNAME",retData.name);
+                    //摘售还是摘购  ListArrX.bsFlag
+                    //商品ID   ListArr.commodityId
+                    //购买人姓名  ListArrX.firmName
+                    //单价  ListArrX.listPrice
+                    //数量 ListArrX.quantity
+                    //首期比例 retData.listDepositRate
+                    //orderId ListArrX.orderID
+                    //该商品是否支持分期   retData.isStage
+                    //该商品是否持仓 ListArrX.status
 
-                var thisWrap = that.parentNode;    //按钮父元素
-                var divWrap = thisWrap.parentNode;   //按钮父元素的父元素divWrap
-                var BuyerName = divWrap.accessKey;    //购买人的姓名  父元素的父元素的accessKey
-                console.log(BuyerName);
-                window.sessionStorage.setItem("BUYSNAME", BuyerName);   //购买人名称存到sess中
-                var thisWrapsss = thisWrap.previousSibling.previousSibling.previousSibling; //摘售还是摘购   父元素上上上元素的accessKey
-                var bsFlag = thisWrapsss.accessKey;
-                console.log(bsFlag);
-                window.sessionStorage.setItem("BSFLAG", bsFlag);  //bsFlag摘售还是摘购存到sess中
-                var thisWrapss = thisWrap.previousSibling.previousSibling;    //商品ID   父元素的上上元素的accessKey
-                var commodityId = thisWrapss.accessKey;
-                console.log(commodityId);
-                window.sessionStorage.setItem("COMMODITYID", commodityId);    //将商品ID存到sess中
-                var unitPrice = thisWrapss.innerHTML;      //  商品单价   父元素的上上的值
-                console.log(unitPrice);
-                window.sessionStorage.setItem("UNITPRICE", unitPrice);    //将商品单价存到sess中
-                var thisWraps = thisWrap.previousSibling;   //数量，父元素的上的值
-                var quantity = thisWraps.innerHTML;
-                console.log(quantity);
-                window.sessionStorage.setItem("QUANTITY", quantity);    //将数量存入sess中
-                var listDepositRate = thisWraps.accessKey;     //父元素的上的accessKey
-                console.log(listDepositRate);
-                window.sessionStorage.setItem("LISTDEPOSITRATE", listDepositRate);    //将首期比例存入sess中
-                var status = thisWrap.accessKey;    //是否有持仓   父元素的accessKey
-                console.log(thisWrap);
-                console.log(status);
-                window.sessionStorage.setItem("STATUS", status);     //将是否有持仓的存入sess中
-                var orderId = that.accessKey;     //orderId   自己的accessKey
-                console.log(orderId);
-                window.sessionStorage.setItem("ORDERID", orderId);
-                var zPrice = (unitPrice) * (quantity);     //总金额  价格*数量
-                console.log(zPrice);
-                window.sessionStorage.setItem("ZBUYPRICE", zPrice);
-
-                //先判断是否登录
-                if (loginState == false) {
-                    window.sessionStorage.setItem("LOGINSOURCE",1);
-                    window.location.href = "loginPage.html";
-                }else if (bsFlag == "1") {     //bsFlag是1摘买单要卖此时查询是否有库存queryHoldCommodity
+                    var thisWrap = that.parentNode;    //按钮父元素
+                    var divWrap = thisWrap.parentNode;   //按钮父元素的父元素divWrap
+                    var BuyerName = divWrap.accessKey;    //购买人的姓名  父元素的父元素的accessKey
+                    console.log(BuyerName);
+                    window.sessionStorage.setItem("BUYSNAME", BuyerName);   //购买人名称存到sess中
+                    var thisWrapsss = thisWrap.previousSibling.previousSibling.previousSibling; //摘售还是摘购   父元素上上上元素的accessKey
+                    var bsFlag = thisWrapsss.accessKey;
                     console.log(bsFlag);
-                    var condition_storageData = JSON.stringify({    //品相和所属仓库接口
-                        "name": "queryCommodityStorage",
-                        "ctype": "Web",
-                        "reqbody": {
-                            "commodityId": commodityId
-                        }
-                    });
-                    homePageAjax(httpheader, condition_storageData, condition_storageSuccess);
-                    function condition_storageSuccess(data) {
-                        if (data.retcode == 0) {
-                            var retData = data.respbody;
-                            var conditionID = retData.condition;
-                            var storageName = retData.storageList[0].storageName;
-                            var storageId = retData.storageList[0].storageID;
+                    window.sessionStorage.setItem("BSFLAG", bsFlag);  //bsFlag摘售还是摘购存到sess中
+                    var thisWrapss = thisWrap.previousSibling.previousSibling;    //商品ID   父元素的上上元素的accessKey
+                    var commodityId = thisWrapss.accessKey;
+                    console.log(commodityId);
+                    window.sessionStorage.setItem("COMMODITYID", commodityId);    //将商品ID存到sess中
+                    var unitPrice = thisWrapss.innerHTML;      //  商品单价   父元素的上上的值
+                    console.log(unitPrice);
+                    window.sessionStorage.setItem("UNITPRICE", unitPrice);    //将商品单价存到sess中
+                    var thisWraps = thisWrap.previousSibling;   //数量，父元素的上的值
+                    var quantity = thisWraps.innerHTML;
+                    console.log(quantity);
+                    window.sessionStorage.setItem("QUANTITY", quantity);    //将数量存入sess中
+                    var listDepositRate = thisWraps.accessKey;     //父元素的上的accessKey
+                    console.log(listDepositRate);
+                    window.sessionStorage.setItem("LISTDEPOSITRATE", listDepositRate);    //将首期比例存入sess中
+                    var status = thisWrap.accessKey;    //是否有持仓   父元素的accessKey
+                    console.log(thisWrap);
+                    console.log(status);
+                    window.sessionStorage.setItem("STATUS", status);     //将是否有持仓的存入sess中
+                    var orderId = that.accessKey;     //orderId   自己的accessKey
+                    console.log(orderId);
+                    window.sessionStorage.setItem("ORDERID", orderId);
+                    var zPrice = (unitPrice) * (quantity);     //总金额  价格*数量
+                    console.log(zPrice);
+                    window.sessionStorage.setItem("ZBUYPRICE", zPrice);
 
-                            var inventoryData = JSON.stringify({    //查询库存
-                                "sessionStr": sessionStr,
-                                "reqbody": {
-                                    "commodityId": commodityId,
-                                    "conditionId": conditionID,
-                                    "strategyId": storageId
-                                },
-                                "userid": userId,
-                                "name": "queryInventory",
-                                "ctype": "Web"
-                            });
-                            homePageAjax(httpheader, inventoryData, inventorySuccess);
+                    //先判断是否登录
+                    if (loginState == false) {
+                        window.sessionStorage.setItem("LOGINSOURCE",1);
+                        window.location.href = "loginPage.html";
+                    }else if (bsFlag == "1") {     //bsFlag是1摘买单要卖此时查询是否有库存queryHoldCommodity
+                        console.log(bsFlag);
+                        var condition_storageData = JSON.stringify({    //品相和所属仓库接口
+                            "name": "queryCommodityStorage",
+                            "ctype": "Web",
+                            "reqbody": {
+                                "commodityId": commodityId
+                            }
+                        });
+                        homePageAjax(httpheader, condition_storageData, condition_storageSuccess);
+                        function condition_storageSuccess(data) {
+                            if (data.retcode == 0) {
+                                var retData = data.respbody;
+                                var conditionID = retData.condition;
+                                var storageName = retData.storageList[0].storageName;
+                                var storageId = retData.storageList[0].storageID;
 
-                            function inventorySuccess(data) {
-                                if (data.retcode == 0) {
-                                    var retData = data.respbody.holdQty;
-                                    if (retData == 0) {
-                                        myToast("该商品没有持仓数量");
-                                        return false;
-                                    } else if (retData < quantity) {
-                                        myToast("该商品持仓数量不足");
-                                        return false;
-                                    } else if (retData >= quantity) {
-                                        window.location.href = "setOutPage.html";
-                                    }
-                                } else {
-                                    if (data.retcode == -17401) {
-                                        loginOut();
-                                        window.sessionStorage.setItem("LOGINSTATE", "flase");
-                                        window.sessionStorage.setItem("LOGINSOURCE", 1);
-                                        window.location.href = "loginPage.html";
+                                var inventoryData = JSON.stringify({    //查询库存
+                                    "sessionStr": sessionStr,
+                                    "reqbody": {
+                                        "commodityId": commodityId,
+                                        "conditionId": conditionID,
+                                        "strategyId": storageId
+                                    },
+                                    "userid": userId,
+                                    "name": "queryInventory",
+                                    "ctype": "Web"
+                                });
+                                homePageAjax(httpheader, inventoryData, inventorySuccess);
+
+                                function inventorySuccess(data) {
+                                    if (data.retcode == 0) {
+                                        var retData = data.respbody.holdQty;
+                                        if (retData == 0) {
+                                            myToast("该商品没有持仓数量");
+                                            return false;
+                                        } else if (retData < quantity) {
+                                            myToast("该商品持仓数量不足");
+                                            return false;
+                                        } else if (retData >= quantity) {
+                                            window.location.href = "setOutPage.html";
+                                        }
                                     } else {
-                                        myToast(data.msg);
+                                        if (data.retcode == -17401) {
+                                            loginOut();
+                                            window.sessionStorage.setItem("LOGINSTATE", "flase");
+                                            window.sessionStorage.setItem("LOGINSOURCE", 1);
+                                            window.location.href = "loginPage.html";
+                                        } else {
+                                            myToast(data.msg);
+                                        }
                                     }
                                 }
-                            }
-                        }else{
-                            if(data.retcode == -17401){
-                                loginOut();
-                                window.sessionStorage.setItem("LOGINSTATE", "flase");
-                                window.sessionStorage.setItem("LOGINSOURCE", 1);
-                                window.location.href = "loginPage.html";
                             }else{
-                                myToast(data.msg);
+                                if(data.retcode == -17401){
+                                    loginOut();
+                                    window.sessionStorage.setItem("LOGINSTATE", "flase");
+                                    window.sessionStorage.setItem("LOGINSOURCE", 1);
+                                    window.location.href = "loginPage.html";
+                                }else{
+                                    myToast(data.msg);
+                                }
                             }
                         }
+                    } else if (bsFlag == "2") {
+                        //bsFlag是2摘卖单要买此时跳转到交易页
+                        window.location.href = "setOutPage.html";
                     }
-                } else if (bsFlag == "2") {
-                    //bsFlag是2摘卖单要买此时跳转到交易页
-                    window.location.href = "setOutPage.html";
                 }
             });
 
@@ -496,77 +525,106 @@ $(function () {
                     window.sessionStorage.setItem("LOGINSOURCE",1);
                     window.location.href = "loginPage.html";
                 } else {
-                    //先判断status的值是否为1
-                    if (retData.status == 1) {
-                        //获取用户输入的价格
-                        var price = $("#price").val();
-                        // 判断价格数量不能为空
-                        if (price == "") {
-                            myToast("请填写商品价格");
+                    //取到firmType和isChecked
+                    var firmType = window.sessionStorage.getItem("FIRMTYPE");
+                    var isChecked = window.sessionStorage.getItem("ISCHECKED");
+                    if (firmType == 1) {   //1个人账户
+                        deal();
+                    } else if (firmType == 6) {   //6企业账户
+                        if(isChecked == 0){   //0正在审核中
+                            myToast("您的账号正在审核中，还不能进行交易");
                             return false;
+                        }else if(isChecked == 1){   //已审核
+                            deal();
                         }
-                        //获取用户输入的数量
-                        var quantity = $("#number").val();
-                        if (quantity == "") {
-                            myToast('请填写商品数量');
+                    }else if (firmType == 3) {   //3个人分销商账户
+                        if(isChecked == 0){   //0正在审核中
+                            myToast("您的账号正在审核中，还不能进行交易");
                             return false;
+                        }else if(isChecked == 1){   //已审核
+                            deal();
                         }
-                        //获取时间
-                        var buyDate = $("#dealRight_left_YQInp_inp_g").val();
-                        if (buyDate == "") {
-                            myToast('请选择时间');
+                    }else if (firmType == 5) {   //5企业分销商账户
+                        if(isChecked == 0){   //0正在审核中
+                            myToast("您的账号正在审核中，还不能进行交易");
                             return false;
+                        }else if(isChecked == 1){   //已审核
+                            deal();
                         }
-                        var purchaseData = JSON.stringify({      //获取是否有符合查询有关的消息
-                            "ctype": "Web",
-                            "name": "queryOnekeyListOrder",
-                            "reqbody": {
-                                "bsFlag": "2",
-                                "commodityId": commodityId,
-                                "pageIndex": "1",
-                                "pageSize": "100",
-                                "price": price,
-                                "quantity": quantity,
-                                "status": "1",
-                                "validDate": buyDate
-                            },
-                            "sessionStr": sessionStr,
-                            "userid": userId
-                        });
-                        homePageAjax(httpheader, purchaseData, purchaseSuccess);
-                        function purchaseSuccess(data) {
-                            if (data.retcode == 0) {
-                                console.log(data);
-                                var retData01 = data.respbody.arrayList;
-                                if (retData01.length == "0") {
-                                    myToast("没有符合条件的商品");
-                                } else {
-                                    //如果有符合条件的商品，将商品名称，商品ID，是否分期，用户输入的购入价，购入数量，有效期，首期付款金额，用户点击的是购入还是售出，等参数传递到购入页
-                                    //PRODUCTNAME   商品名称
-                                    //COMMODITYID   商品ID
-                                    //ISSTAGE       该商品是否支持分期  0全款 1分期
-                                    //首期比例    单价*数量*比例
-                                    window.sessionStorage.setItem("LISTDEPOSITIRATE", listDepositRate);   //首期比例
-                                    window.sessionStorage.setItem("PURCHASEPRICE", price);        //购入价
-                                    window.sessionStorage.setItem("PURCHASEQUANTITY", quantity);   //购入数量
-                                    window.sessionStorage.setItem("PURCHASEBUYDATE", buyDate);    //有效期
-                                    window.sessionStorage.setItem("BUYSELL", that.accessKey);    //用户点击的购入还是售出     购入2 售出1
-                                    window.location.href = "ADelistingPage.html";
-                                }
-                            } else {
-                                if(data.retcode == -17401){
-                                    loginOut();
-                                    window.sessionStorage.setItem("LOGINSTATE", "flase");
-                                    window.sessionStorage.setItem("LOGINSOURCE", 1);
-                                    window.location.href = "loginPage.html";
-                                }else{
-                                    myToast(data.msg);
-                                }
+                    }
+                    function deal() {
+                        //先判断status的值是否为1
+                        if (retData.status == 1) {
+                            //获取用户输入的价格
+                            var price = $("#price").val();
+                            // 判断价格数量不能为空
+                            if (price == "") {
+                                myToast("请填写商品价格");
+                                return false;
                             }
+                            //获取用户输入的数量
+                            var quantity = $("#number").val();
+                            if (quantity == "") {
+                                myToast('请填写商品数量');
+                                return false;
+                            }
+                            //获取时间
+                            var buyDate = $("#dealRight_left_YQInp_inp_g").val();
+                            if (buyDate == "") {
+                                myToast('请选择时间');
+                                return false;
+                            }
+                            var purchaseData = JSON.stringify({      //获取是否有符合查询有关的消息
+                                "ctype": "Web",
+                                "name": "queryOnekeyListOrder",
+                                "reqbody": {
+                                    "bsFlag": "2",
+                                    "commodityId": commodityId,
+                                    "pageIndex": "1",
+                                    "pageSize": "100",
+                                    "price": price,
+                                    "quantity": quantity,
+                                    "status": "1",
+                                    "validDate": buyDate
+                                },
+                                "sessionStr": sessionStr,
+                                "userid": userId
+                            });
+                            homePageAjax(httpheader, purchaseData, purchaseSuccess);
+                            function purchaseSuccess(data) {
+                                if (data.retcode == 0) {
+                                    console.log(data);
+                                    var retData01 = data.respbody.arrayList;
+                                    if (retData01.length == "0") {
+                                        myToast("没有符合条件的商品");
+                                    } else {
+                                        //如果有符合条件的商品，将商品名称，商品ID，是否分期，用户输入的购入价，购入数量，有效期，首期付款金额，用户点击的是购入还是售出，等参数传递到购入页
+                                        //PRODUCTNAME   商品名称
+                                        //COMMODITYID   商品ID
+                                        //ISSTAGE       该商品是否支持分期  0全款 1分期
+                                        //首期比例    单价*数量*比例
+                                        window.sessionStorage.setItem("LISTDEPOSITIRATE", listDepositRate);   //首期比例
+                                        window.sessionStorage.setItem("PURCHASEPRICE", price);        //购入价
+                                        window.sessionStorage.setItem("PURCHASEQUANTITY", quantity);   //购入数量
+                                        window.sessionStorage.setItem("PURCHASEBUYDATE", buyDate);    //有效期
+                                        window.sessionStorage.setItem("BUYSELL", that.accessKey);    //用户点击的购入还是售出     购入2 售出1
+                                        window.location.href = "ADelistingPage.html";
+                                    }
+                                } else {
+                                    if(data.retcode == -17401){
+                                        loginOut();
+                                        window.sessionStorage.setItem("LOGINSTATE", "flase");
+                                        window.sessionStorage.setItem("LOGINSOURCE", 1);
+                                        window.location.href = "loginPage.html";
+                                    }else{
+                                        myToast(data.msg);
+                                    }
+                                }
 
+                            }
+                        } else {
+                            myToast('此商品暂时不能进行交易');
                         }
-                    } else {
-                        myToast('此商品暂时不能进行交易');
                     }
                 }
             });
@@ -578,83 +636,112 @@ $(function () {
                     window.sessionStorage.setItem("LOGINSOURCE",1);
                     window.location.href = "loginPage.html";
                 } else {
-                    //先判断status的值是否为1
-                    if (retData.status == 1) {
-                        //获取用户输入的价格
-                        var price = $("#g_price").val();
-                        // 判断价格数量不能为空
-                        if (price == "") {
-                            myToast('请填写商品价格');
+                    //取到firmType和isChecked
+                    var firmType = window.sessionStorage.getItem("FIRMTYPE");
+                    var isChecked = window.sessionStorage.getItem("ISCHECKED");
+                    if (firmType == 1) {   //1个人账户
+                        deal();
+                    } else if (firmType == 6) {   //6企业账户
+                        if(isChecked == 0){   //0正在审核中
+                            myToast("您的账号正在审核中，还不能进行交易");
                             return false;
+                        }else if(isChecked == 1){   //已审核
+                            deal();
                         }
-                        //获取用户输入的数量
-                        var quantity = $("#g_number").val();
-                        if (quantity == "") {
-                            myToast('请填写商品数量');
+                    }else if (firmType == 3) {   //3个人分销商账户
+                        if(isChecked == 0){   //0正在审核中
+                            myToast("您的账号正在审核中，还不能进行交易");
                             return false;
-                        }else if(availableQuantity < quantity){    //售出单数量与用户持仓可用数量做对比
-                            myToast('持仓数量不足');
-                            return false;
+                        }else if(isChecked == 1){   //已审核
+                            deal();
                         }
-                        //获取时间
-                        var buyDate = $("#dealRight_left_YQInp_inp_m").val();
-                        if (buyDate == "") {
-                            myToast('请选择时间');
+                    }else if (firmType == 5) {   //5企业分销商账户
+                        if(isChecked == 0){   //0正在审核中
+                            myToast("您的账号正在审核中，还不能进行交易");
                             return false;
+                        }else if(isChecked == 1){   //已审核
+                            deal();
                         }
-                        //购入单参数
-                        var workOffData = JSON.stringify({
-                            "ctype": "Web",
-                            "name": "queryOnekeyListOrder",
-                            "reqbody": {
-                                "bsFlag": "1",
-                                "commodityId": commodityId,
-                                "pageIndex": "1",
-                                "pageSize": "100",
-                                "price": price,
-                                "quantity": quantity,
-                                "status": "1",
-                                "validDate": buyDate
-                            },
-                            "sessionStr": sessionStr,
-                            "userid": userId
-                        })
-                        homePageAjax(httpheader, workOffData, workOffSuccess);
+                    }
+                    function deal(){
+                        //先判断status的值是否为1
+                        if (retData.status == 1) {
+                            //获取用户输入的价格
+                            var price = $("#g_price").val();
+                            // 判断价格数量不能为空
+                            if (price == "") {
+                                myToast('请填写商品价格');
+                                return false;
+                            }
+                            //获取用户输入的数量
+                            var quantity = $("#g_number").val();
+                            if (quantity == "") {
+                                myToast('请填写商品数量');
+                                return false;
+                            }else if(availableQuantity < quantity){    //售出单数量与用户持仓可用数量做对比
+                                myToast('持仓数量不足');
+                                return false;
+                            }
+                            //获取时间
+                            var buyDate = $("#dealRight_left_YQInp_inp_m").val();
+                            if (buyDate == "") {
+                                myToast('请选择时间');
+                                return false;
+                            }
+                            //购入单参数
+                            var workOffData = JSON.stringify({
+                                "ctype": "Web",
+                                "name": "queryOnekeyListOrder",
+                                "reqbody": {
+                                    "bsFlag": "1",
+                                    "commodityId": commodityId,
+                                    "pageIndex": "1",
+                                    "pageSize": "100",
+                                    "price": price,
+                                    "quantity": quantity,
+                                    "status": "1",
+                                    "validDate": buyDate
+                                },
+                                "sessionStr": sessionStr,
+                                "userid": userId
+                            })
+                            homePageAjax(httpheader, workOffData, workOffSuccess);
 
-                        function workOffSuccess(data) {
-                            if(data.retcode == 0) {
-                                console.log(data);
-                                var retData03 = data.respbody.arrayList;
-                                if (retData03.length == "0") {
-                                    myToast("没有符合条件的商品");
-                                } else {
-                                    //如果有符合条件的商品，将商品ID,商品名称,用户输入的购入价，购入数量，有效期，是否分期，用户点击的是购入还是售出，等参数传递到购入页
-                                    //PRODUCTNAME   商品名称
-                                    //COMMODITYID   商品ID
-                                    //ISSTAGE       该商品是否支持分期   0全款 1分期
-                                    //首期比例    单价*数量*比例
-                                    console.log(retData.listDepositRate);
-                                    window.sessionStorage.setItem("LISTDEPOSITIRATE", listDepositRate);   //首期比例
-                                    window.sessionStorage.setItem("PURCHASEPRICE", price);        //购入价
-                                    window.sessionStorage.setItem("PURCHASEQUANTITY", quantity);   //购入数量
-                                    window.sessionStorage.setItem("PURCHASEBUYDATE", buyDate);    //有效期
-                                    console.log(that.accessKey);
-                                    window.sessionStorage.setItem("BUYSELL", that.accessKey);    //用户点击的购入还是售出     购入2 售出1
-                                    window.location.href = "ADelistingPage.html";
-                                }
-                            }else{
-                                if(data.retcode == -17401){
-                                    loginOut();
-                                    window.sessionStorage.setItem("LOGINSTATE", "flase");
-                                    window.sessionStorage.setItem("LOGINSOURCE", 1);
-                                    window.location.href = "loginPage.html";
+                            function workOffSuccess(data) {
+                                if(data.retcode == 0) {
+                                    console.log(data);
+                                    var retData03 = data.respbody.arrayList;
+                                    if (retData03.length == "0") {
+                                        myToast("没有符合条件的商品");
+                                    } else {
+                                        //如果有符合条件的商品，将商品ID,商品名称,用户输入的购入价，购入数量，有效期，是否分期，用户点击的是购入还是售出，等参数传递到购入页
+                                        //PRODUCTNAME   商品名称
+                                        //COMMODITYID   商品ID
+                                        //ISSTAGE       该商品是否支持分期   0全款 1分期
+                                        //首期比例    单价*数量*比例
+                                        console.log(retData.listDepositRate);
+                                        window.sessionStorage.setItem("LISTDEPOSITIRATE", listDepositRate);   //首期比例
+                                        window.sessionStorage.setItem("PURCHASEPRICE", price);        //购入价
+                                        window.sessionStorage.setItem("PURCHASEQUANTITY", quantity);   //购入数量
+                                        window.sessionStorage.setItem("PURCHASEBUYDATE", buyDate);    //有效期
+                                        console.log(that.accessKey);
+                                        window.sessionStorage.setItem("BUYSELL", that.accessKey);    //用户点击的购入还是售出     购入2 售出1
+                                        window.location.href = "ADelistingPage.html";
+                                    }
                                 }else{
-                                    myToast(data.msg);
+                                    if(data.retcode == -17401){
+                                        loginOut();
+                                        window.sessionStorage.setItem("LOGINSTATE", "flase");
+                                        window.sessionStorage.setItem("LOGINSOURCE", 1);
+                                        window.location.href = "loginPage.html";
+                                    }else{
+                                        myToast(data.msg);
+                                    }
                                 }
                             }
+                        } else {
+                            myToast('此商品暂时不能进行交易');
                         }
-                    } else {
-                        myToast('此商品暂时不能进行交易');
                     }
                 }
             })

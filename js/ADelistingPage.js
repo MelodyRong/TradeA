@@ -181,20 +181,6 @@ if (BuyOrSell == 1) {
                     window.sessionStorage.setItem("LOGINSOURCE", 1);
                     window.location.href = "loginPage.html";
                 } else {
-                    //取到firmType和isChecked
-                    var firmType = window.sessionStorage.getItem("FIRMTYPE");
-                    var isChecked = window.sessionStorage.getItem("ISCHECKED");
-                    if (firmType == 1) {   //1个人账户
-                        deal();
-                    } else if (firmType == 6) {   //6企业账户
-                        if(isChecked == 0){   //0正在审核中
-                            myToast("您的账号正在审核中，还不能进行交易");
-                            return false;
-                        }else if(isChecked == 1){   //已审核
-                            deal();
-                        }
-                    }
-                    function deal() {
                         //判断是否选中商品
                         var chaestVal = "";
                         for (var x = 0; x < $(".checkAll").length; x++) {
@@ -315,7 +301,6 @@ if (BuyOrSell == 1) {
                             }
                         }
                     }
-                }
             })
         } else {
             if (data.retcode == -17401) {
@@ -684,20 +669,6 @@ if (BuyOrSell == 1) {
                         window.sessionStorage.setItem("LOGINSOURCE", 1);
                         window.location.href = "loginPage.html";
                     } else {
-                        //取到firmType和isChecked
-                        var firmType = window.sessionStorage.getItem("FIRMTYPE");
-                        var isChecked = window.sessionStorage.getItem("ISCHECKED");
-                        if (firmType == 1) {   //1个人账户
-                            deal();
-                        } else if (firmType == 6) {   //6企业账户
-                            if(isChecked == 0){   //0正在审核中
-                                myToast("您的账号正在审核中，还不能进行交易");
-                                return false;
-                            }else if(isChecked == 1){   //已审核
-                                deal();
-                            }
-                        }
-                        function deal() {
                             //判断是否选中商品
                             var chaestVal = "";
                             for (var x = 0; x < $(".checkAll").length; x++) {
@@ -842,7 +813,6 @@ if (BuyOrSell == 1) {
                                 }
                             }
                         }
-                    }
                 })
             }
         }

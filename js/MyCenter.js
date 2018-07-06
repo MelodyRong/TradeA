@@ -158,6 +158,21 @@ function MyCenterSuccess(data) {
         //默认当前用户的手机号码，并且不可改
         $("#phoneCode").val(retData.mobile);
         $("#phoneCode").attr("disabled", true);
+
+        //完善企业信息页面的信息展示
+        $("#enterpriseName").val(retData.name);   //姓名
+        $("#enterprisePhone").val(retData.mobile);   //手机号码
+        //所属银行firmBankName
+        $("#CompanyBank").val(retData.firmBankName);
+        //银行卡账号firmAccount
+        $("#bankCompany").val(retData.firmAccount);
+        //社会统一代码
+        $("#creditCode").val(retData.paperscode);
+        //常用地址addressDetail
+        $("#CompanyAddress").val(retData.addressDetail);
+        //默认当前用户的手机号码，并且不可改
+        $("#phoneCode").val(retData.mobile);
+        $("#phoneCode").attr("disabled", true);
     } else {
         if (data.retcode == -17401) {
             loginOut();
@@ -472,9 +487,48 @@ $("#Companysubmit").click(function () {
 
     function formData_YSuccess(data) {
         console.log(data);
-        if (data.retcode == 0) {
+        if (data.retCode == 0) {
             var retData = data.retData;
             window.sessionStorage.setItem("IDENTITYCARD_Y", retData.phtotUrl);
+
+
+            //发起完善信息接口
+            //企业名称
+            var firmName = $("#enterpriseName").val();
+            // 联系人手机号码
+            var firmPhone = $("#enterprisePhone").val();
+            // 社会统一信用代码
+            var firmCode = $("#creditCode").val();
+            // 银行卡账号
+            var firmBank = $("#bankCompany").val();
+            // 所属银行
+            var firmCompanyBank = $("#CompanyBank").val();
+            // 收货地址
+            var firmCompanyAddress = $("#CompanyAddress").val();
+            // 营业执照照片
+            var firmphoto = window.sessionStorage.getItem("IDENTITYCARD_Y");
+            //完善信息接口
+            var CompleteInformationFirmData = JSON.stringify({
+                "reqbody": {
+                    "idCardType": "1",  // --0代表身份证号码,1代表同意社会代码
+                    "photoUrl": [{
+                        "photoType": 3,  // --身份证正面
+                        "photoUrl": firmphoto
+                    }],
+                    "mobile": firmPhone,   //--用户手机号
+                    "idCard": firmCode,  //--身份证账号
+                    "bankName": firmCompanyBank,  		//---所属银行
+                    "addressDetail": firmCompanyAddress,    //--收货地址
+                    "realName": firmName,   //--用户姓名
+                    "firmId": frimId,      // --用户id
+                    "account": firmBank// – 银行卡账号
+                },
+                "sessionStr": sessStr,  // --登录时用户的str
+                "userid": userId,    //--用户id
+                "name": "completeUserInfo",   //---接口名称
+                "ctype": "Web"
+            });
+            httpAjax(httpheader, CompleteInformationFirmData, CompleteInformationFirmSuccess);
         } else {
             if (data.retCode == -17401) {
                 loginOut();
@@ -487,44 +541,6 @@ $("#Companysubmit").click(function () {
             }
         }
     }
-
-    //发起完善信息接口
-    //企业名称
-    var firmName = $("#enterpriseName").val();
-    // 联系人手机号码
-    var firmPhone = $("#enterprisePhone").val();
-    // 社会统一信用代码
-    var firmCode = $("#creditCode").val();
-    // 银行卡账号
-    var firmBank = $("#bankCompany").val();
-    // 所属银行
-    var firmCompanyBank = $("#CompanyBank").val();
-    // 收货地址
-    var firmCompanyAddress = $("#CompanyAddress").val();
-    // 营业执照照片
-    var firmphoto = window.sessionStorage.getItem("IDENTITYCARD_Y");
-    //完善信息接口
-    var CompleteInformationFirmData = JSON.stringify({
-        "reqbody": {
-            "idCardType": "1",  // --0代表身份证号码,1代表同意社会代码
-            "photoUrl": [{
-                "photoType": 3,  // --身份证正面
-                "photoUrl": firmphoto
-            }],
-            "mobile": firmPhone,   //--用户手机号
-            "idCard": firmCode,  //--身份证账号
-            "bankName": firmCompanyBank,  		//---所属银行
-            "addressDetail": firmCompanyAddress,    //--收货地址
-            "realName": firmName,   //--用户姓名
-            "firmId": frimId,      // --用户id
-            "account": firmBank// – 银行卡账号
-        },
-        "sessionStr": sessStr,  // --登录时用户的str
-        "userid": userId,    //--用户id
-        "name": "completeUserInfo",   //---接口名称
-        "ctype": "Web"
-    });
-    httpAjax(httpheader, CompleteInformationFirmData, CompleteInformationFirmSuccess);
 });
 
 //完善企业信息请求成功接口
@@ -896,21 +912,21 @@ function capitalSuccess(data) {
 // function count(){
 //     return window.sessionStorage.getItem("CAPITALPAGECOUNT");//页数
 // }
-$("#demo4").paginate({
-    count: 20,
-    start: 1,
-    display: 12,
-    border: false,
-    text_color: '#79B5E3',
-    background_color: 'none',
-    text_hover_color: '#2573AF',
-    background_hover_color: 'none',
-    images: false,
-    mouse: 'press',
-    onChange: function (page) {
-        console.log(page);
-    }
-});
+// $("#demo4").paginate({
+//     count: 20,
+//     start: 1,
+//     display: 12,
+//     border: false,
+//     text_color: '#79B5E3',
+//     background_color: 'none',
+//     text_hover_color: '#2573AF',
+//     background_hover_color: 'none',
+//     images: false,
+//     mouse: 'press',
+//     onChange: function (page) {
+//         console.log(page);
+//     }
+// });
 
 //推荐奖励
 var recommendData = JSON.stringify({
@@ -2055,6 +2071,12 @@ function workOffSuccess2(data) {
             workOffEndListContent.html("暂无数据");
         } else {
             for (var i = 0; i < retData.length; i++) {
+                if (retData[i].validDate == undefined) {
+                    retData[i].validDate = "";
+                } else {
+                    retData[i].validDate = getMyDate(retData[i].validDate);
+                }
+
                 if (retData[i].status == "0") {
                     retData[i].status = "未支付";
                 } else if (retData[i].status == "1") {
@@ -2089,7 +2111,7 @@ function workOffSuccess2(data) {
                     + '</li><li class="WithdrawalRecordContentliulli">'
                     + retData[i].listPrice
                     + '</li><li class="WithdrawalRecordContentliulli"><marquee behavior="scroll" direction="left" scrollamount="4">'
-                    + getMyDate(retData[i].updateTime)
+                    + retData[i].updateTime
                     + '</marquee></li><li class="WithdrawalRecordContentliulli">'
                     + retData[i].status
                     + '</li><li class="WithdrawalRecordContentliulli"></li><li class="WithdrawalRecordContentliulli revocationWrap"><button class="" accesskey= '
@@ -2131,7 +2153,66 @@ httpAjax(httpheader, DistributionData(),DistributionSuccess);
 function DistributionSuccess(data) {
     console.log(data);
     if(data.retcode == 0){
+        var retData = data.respbody.arrayList;
+        var distributionAllListContent = $("#distributionAllListContent");
+        if (retData.length == 0) {
+            distributionAllListContent.attr("class", "bottom_play Withdrawal_record");
+            distributionAllListContent.html("暂无数据");
+        } else {
+            for (var i = 0; i < retData.length; i++) {
+                //有效期
+                if (retData[i].validDate == undefined) {
+                    retData[i].validDate = "";
+                }else if(retData[i].validDate == ""){
+                    retData[i].validDate = ""
+                } else {
+                    retData[i].validDate = getMyDate(retData[i].validDate);
+                }
 
+                if (retData[i].status == "0") {
+                    retData[i].status = "未支付";
+                } else if (retData[i].status == "1") {
+                    retData[i].status = "已委托";
+                } else if (retData[i].status == "2") {
+                    retData[i].status = "已成交";
+                } else if (retData[i].status == "3") {
+                    retData[i].status = "已撤单";
+                } else if (retData[i].status == "4") {
+                    retData[i].status = "已提货";
+                } else if (retData[i].status == "5") {
+                    retData[i].status = "已发货";
+                } else if (retData[i].status == "6") {
+                    retData[i].status = "订单完成";
+                } else if (retData[i].status == "11") {
+                    retData[i].status = "支付尾款";
+                } else if (retData[i].status == "12") {
+                    retData[i].status = "已过期";
+                } else if (retData[i].status == "13") {
+                    retData[i].status = "违约单";
+                } else if (retData[i].status == "20") {
+                    retData[i].status = "交易中";
+                }
+                distributionAllListContent.append('<li class="WithdrawalRecordContentli"><ul class="WithdrawalRecordContentliul"><li class="WithdrawalRecordContentliulli">'
+                    + retData[i].orderID
+                    + '</li><li class="WithdrawalRecordContentliulli" title="'
+                    + retData[i].commodityName
+                    + '">'
+                    + retData[i].commodityName
+                    + '</li><li class="WithdrawalRecordContentliulli">'
+                    + retData[i].list[0].quantity
+                    + '</li><li class="WithdrawalRecordContentliulli">'
+                    + retData[i].list[0].price
+                    + '</li><li class="WithdrawalRecordContentliulli">'
+                    + retData[i].totalPrice
+                    +'</li><li class="WithdrawalRecordContentliulli"><marquee behavior="scroll" direction="left" scrollamount="4">'
+                    + getMyDate(retData[i].createTime)
+                    + '</marquee></li><li class="WithdrawalRecordContentliulli">'
+                    + retData[i].validDate
+                    +'</li><li class="WithdrawalRecordContentliulli revocationWrap">'
+                    + retData[i].status
+                    +'</li></ul></li>');
+            }
+        }
     }else{
         if (data.retcode == -17401) {
             loginOut();
