@@ -358,7 +358,9 @@ if (BuyOrSell == 1) {
                         + retData[i].quantity
                         + '" value="'
                         + retData[i].listPrice
-                        + '"></li></ul></li>');
+                        + '" title="'
+                        + retData[i].orderID
+                        +'"></li></ul></li>');
                 }
                 //计算数量，金额
                 //计算数量
@@ -425,12 +427,15 @@ if (BuyOrSell == 1) {
                             return false;
                         }
                         var listOrderIdList = [];
-                        var orderIdList = data.respbody.arrayList;
-                        for (var d = 0; d < orderIdList.length; d++) {   //循环得到listOrderID
-                            var listList = {};
-                            listList.listOrderId = String(orderIdList[d].orderID);
-                            listOrderIdList.push(listList);
+                        for(var d=0;d<$(".checkAll").length;d++){
+                            if($(".checkAll")[d].checked == true){
+                                console.log($(".checkAll")[d].title);
+                                var listList = {};
+                                listList.listOrderId = String($(".checkAll")[d].title);
+                                listOrderIdList.push(listList);
+                            }
                         }
+                        console.log(listOrderIdList);
                         var addressDatailData = JSON.stringify({    //判断是否完善信息
                             "ctype": "Web",
                             "name": "queryAddr",
@@ -464,7 +469,6 @@ if (BuyOrSell == 1) {
                                         "userid": userId
                                     });
                                     homePageAjax(httpheader, serviceChargeData, serviceChargeSuccess);
-
                                     function serviceChargeSuccess(data) {    //手续费请求成功
                                         if (data.retcode == 0) {
                                             var sxf = data.respbody.free;
@@ -482,14 +486,13 @@ if (BuyOrSell == 1) {
                                                             "price": money,
                                                             "commodityName": commodityName,
                                                             "listOrderIdList": listOrderIdList,
-                                                            "orderTotalAmount": number
+                                                            "orderTotalAmount": money
                                                         },
                                                         "name": "onekeyListTradeBuy",
                                                         "sessionStr": sessionStr
                                                     });
                                                     console.log(QbuyData);
                                                     homePageAjax(httpheader, QbuyData, QSellData);
-
                                                     function QSellData(data2) {
                                                         console.log(data2);
                                                         if (data2.retcode == 0) {
@@ -593,7 +596,7 @@ if (BuyOrSell == 1) {
                 var orderIdList = data.respbody.arrayList;
                 for (var d = 0; d < orderIdList.length; d++) {
                     var listList = {};
-                    listList.listOrderId = orderIdList[d].orderID;
+                    listList.listOrderId = String(orderIdList[d].orderID);
                     listOrderIdList.push(listList);
                 }
                 //计算数量，金额等
@@ -615,40 +618,43 @@ if (BuyOrSell == 1) {
                 $("#fqfkje").html(FixNum);
                 //单选框发生改变时，当前的复选框没有被选中则全选按钮不选，如果当前的复选框被选中，则遍历所有的复选框是否被选中，如果都被选中，则全选按钮被选中
                 var checkAll = $(".checkAll");
-                checkAll[i].onchange = function () {
-                    console.log(this.checked);
-                    //如果当前checked为false，则全选checked的为false
-                    if (this.checked == false) {
-                        $("#checkAll").prop("checked", false);
-                    } else {
-                        for (var i = 0; i < checkAll.length; i++) {
-                            if (checkAll[i].checked == true) {
-                                $("#checkAll").attr("checked",true);
+                for(var i=0;i<checkAll.length;i++){
+                    checkAll[i].onchange = function () {
+                        console.log(this.checked);
+                        //如果当前checked为false，则全选checked的为false
+                        if (this.checked == false) {
+                            $("#checkAll").prop("checked", false);
+                        } else {
+                            for (var i = 0; i < checkAll.length; i++) {
+                                if (checkAll[i].checked == true) {
+                                    $("#checkAll").attr("checked",true);
+                                }
                             }
                         }
-                    }
-                    //计算数量
-                    var quantity = 0;
-                    for (var k = 0; k < checkAll.length; k++) {
-                        if (checkAll[k].checked == true) {
-                            quantity += Number(checkAll[k].accessKey);
+                        //计算数量
+                        var quantity = 0;
+                        for (var k = 0; k < checkAll.length; k++) {
+                            if (checkAll[k].checked == true) {
+                                quantity += Number(checkAll[k].accessKey);
+                            }
                         }
-                    }
-                    $("#zNumber").html(quantity);
-                    //计算总金额
-                    var price = 0;
-                    for (var m = 0; m < checkAll.length; m++) {
-                        if (checkAll[m].checked == true) {
-                            price += (Number(checkAll[m].accessKey)) * (Number(checkAll[m].value));
+                        $("#zNumber").html(quantity);
+                        //计算总金额
+                        var price = 0;
+                        for (var m = 0; m < checkAll.length; m++) {
+                            if (checkAll[m].checked == true) {
+                                price += (Number(checkAll[m].accessKey)) * (Number(checkAll[m].value));
+                            }
                         }
-                    }
-                    $("#span1").html(price);
-                    //计算首付金额
-                    var sfPrice = price * listDepositRate;
-                    console.log(sfPrice);
-                    var FixNum = Math.floor(sfPrice * 100) / 100;
-                    $("#fqfkje").html(FixNum);
-                };
+                        $("#span1").html(price);
+                        //计算首付金额
+                        var sfPrice = price * listDepositRate;
+                        console.log(sfPrice);
+                        var FixNum = Math.floor(sfPrice * 100) / 100;
+                        $("#fqfkje").html(FixNum);
+                    };
+                }
+
                 //当分期和全款付款方式发生改变时，改变首付金额（分期时首付金额 = 首付金额      全款时首付金额 = 全部商品金额）
                 var inp = $(".inp");
                 inp.onchange = function (ev) {
@@ -716,7 +722,7 @@ if (BuyOrSell == 1) {
                                             function serviceChargeSuccess(data) {
                                                 console.log(data);
                                                 if (data.retcode == 0) {
-                                                    var sxf = data1.respbody.free;
+                                                    var sxf = data.respbody.free;
                                                     for (var s = 0; s < $(".inp").length; s++) {
                                                         if ($(".inp")[s].checked == true) {
                                                             if ($(".inp")[s].value == "全款") {
