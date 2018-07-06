@@ -1,0 +1,375 @@
+/*内容*/
+.perCenter{
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+.perCenter_left{
+	float: left;
+	width: 238px;
+	/*height: 100px;*/
+	border:1px solid #ccc;
+	
+}
+.perCenter_right{
+	float: right;
+	width: 950px;
+	/*height: 100px;*/
+	border:1px solid #ccc;
+}
+.perCenter_left_ul{
+	width: 100%;
+	/*height: 100%;*/
+}
+.perCenter_left_ul li{
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
+}
+.per_title{	
+	height: 52px;
+	border-bottom: 1px solid #D7D7D7;
+	line-height: 52px;
+	font-size: 16px;
+}
+.information{
+	background: #fdf9fa url(../img/per.png) no-repeat;
+}
+.myFund{
+	border-top: 1px solid #D7D7D7;
+	background: #fdf9fa url(../img/fund.png) no-repeat;
+}
+.pickUp{
+	border-top: 1px solid #D7D7D7;
+	background: #fdf9fa url(../img/indent.png) no-repeat;
+}
+.workOff{
+	border-top: 1px solid #D7D7D7;
+	background: #fdf9fa url(../img/workOff.png) no-repeat 20px center;
+}
+.buy{
+	border-top: 1px solid #D7D7D7;
+	background: #fdf9fa url(../img/buy.png) no-repeat 20px center;
+}
+.promotion{
+	border-top: 1px solid #D7D7D7;
+	background: #fdf9fa url(../img/promotion.png) no-repeat 20px center;
+}
+.position{
+	border-top: 1px solid #D7D7D7;
+	background: #fdf9fa url(../img/position.png) no-repeat 20px center;
+}
+.per_td{
+	height:40px ;
+	line-height: 40px;
+	font-size: 14px;
+}
+.per_details{
+	width: 100%;
+	/*height: 100%;*/
+	font-size: 16px;
+}
+.per_perfect{
+	width: 100%;
+	height: 69px;
+	border-bottom: 1px solid #D7D7D7;
+	font-size: 18px;
+	line-height: 70px;
+}
+.per_perfect img{
+	width: 30px;
+}
+.per_details hr{
+	height:1px;
+	border:none;
+	border-bottom: 1px solid #D7D7D7;
+	width: 95%;
+	margin: 0 auto;
+}
+.per_details label{
+	margin-left: 25px;
+	width: 150px;
+	display: inline-block;
+}
+/*上传身份证照片*/
+.cardWrap{
+	display: flex;
+	padding: 20px;
+}
+.uploadForm01{
+	flex: auto;
+}
+.uploadForm02{
+	flex: auto;
+}
+.uploadForm03{
+	flex: auto;
+}
+.cardLabel{
+	margin-bottom: 20px;
+}
+
+
+
+
+
+.forinp{
+	width: 15rem;
+	height: 45px;
+	line-height: 45px;
+	border:1px solid #D7D7D7;
+	background-color: #F7F7F7;
+	border-radius: 8px;
+	margin-top:25px;
+	margin-bottom: 25px;
+	font-size: 16px;
+	color: black;
+	padding-left: 10px;
+}
+.inpbtn{
+	width: 100%;
+	text-align: center;
+	margin-top: 35px;
+	margin-bottom: 35px;
+}
+.inpbtn input{
+	width:110px;
+	height: 30px;
+	border-radius: 5px;
+	font-size: 14px;
+}
+.inpbtn input:first-child{
+	background-color: #D1211D;
+	color: white;
+}
+.inpbtn input:last-child{
+	border:1px solid #d1211d;
+	background-color: white;
+	color: #D1211D;
+	margin-left: 30px;
+}
+/*修改密码页短信验证按钮*/
+.btn_ver{
+	display: inline-block;
+	color: #D1211D;
+	background-color: white;
+	border-radius: 5px;
+	border:1px solid #D1211D;
+	margin-left: 35px;
+	padding: 10px;
+	width: 120px;
+	height: 20px;
+	text-align: center;
+}
+/*充值提现页*/
+.bottom_play{
+	width: 90%;
+	margin: 0 auto;
+}
+.Withdrawal_record{
+	padding: 50px;
+	text-align: center;
+}
+.bottom_play_top{
+	/*padding:50px;*/
+	padding-top: 50px;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #D7D7D7;
+	font-size: 18px;
+	display: flex;
+	/*flex: 3;*/
+}
+.bottom_play_bottom{
+	padding-left:50px;
+	padding-top: 20px;
+}
+.usable,.freeze{
+	flex: auto;
+	/*flex: 1;*/
+}
+.recharge,.deposit{
+	float: left;
+	width: 49%;
+	/*height: 100%;*/
+}
+.usable span,.freeze span{
+	display: inline-block;
+	width: 40%;
+}
+.recharge,.deposit{
+	text-align: left;
+	font-size: 18px;
+}
+.recharge_money span,.deposit_money span{
+	display: inline-block;
+	width: 60px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	/*color: #D1211D;*/
+	border:1px solid #D1211D;
+	border-radius: 5px;
+}
+.recharge_money p,.deposit_money p{
+	margin-bottom: 25px;
+}
+.custom_money{
+	display: block;
+	width: 190px;
+	height: 20px;
+	border:1px solid #D1211D;
+	border-radius: 5px;
+	margin-top: 10px;
+	padding-left: 10px;
+	font-size: 16px;
+	/*color: #D1211D;*/
+}
+/*确认充值按钮*/
+.affirm{
+	width:110px;
+	height: 30px;
+	font-size: 16px;
+	text-align: center;
+	line-height: 30px;
+	background-color: #D1211D;
+	color: white;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-radius: 5px;
+}
+.btn_recharge{
+	
+}
+.depositRed{
+	background-color: red;
+	color: white;
+}
+/*确认提现按钮*/
+.btn_deposit{
+	
+}
+
+/*提现历史记录*/
+.Withdrawal_record_top,.capital_bills_top,.pickUpList_top,.promotionAll_top{
+	display: flex;
+	padding:20px 0;
+	border-bottom:1px solid #D7D7D7;
+}
+.Withdrawal_record_top span,.capital_bills_top span,.pickUpList_top span,.promotionAll_top span{
+	flex: auto;
+	text-align: center;
+}
+.WithdrawalRecordContentli{
+	line-height: 35px;
+}
+.WithdrawalRecordContentliul{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	display: flex;
+	/*padding:20px;*/
+	padding-top:20px;
+}
+.WithdrawalRecordContentliulli{
+	flex: auto;
+	/*height: 40px;*/
+	text-align: center;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+.revocation{
+	width: 100px;
+	height: 35px;
+	background-color: red;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	line-height: 35px;
+	/*margin-left: 35.5px;*/
+	border-radius: 5px;
+}
+.revocatio{
+	width: 50px;
+	height: 35px;
+	background-color: red;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	line-height: 35px;
+	/*margin-right: 10px;*/
+	border-radius: 5px;
+}
+.cxtxcg{
+	width: 100px;
+	height: 35px;
+	background-color:#ccc;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	line-height: 35px;
+	margin-left: 35.5px;
+	border-radius: 5px;
+}
+/*提货查询页面*/
+.pick{
+	width: 100%;
+	
+}
+.pick_title{
+	width: 100%;
+    height: 30px;
+	margin: 0 auto;
+	display: flex;
+	border-bottom:1px solid #D7D7D7;
+}
+.pick_title li{
+	/*float: left;*/
+	width: 16%;
+	flex: auto;
+	border-right: 1px solid #D7D7D7;
+	text-align: center;
+    line-height: 30px;
+}
+/*我的售出*/
+.pick{
+	width: 100%;
+	/*height: 100px;*/
+	/*overflow: hidden;*/
+}
+.pick_top{
+	width: 100%;
+	height: 40px;
+	background-color:whitesmoke;
+	border-bottom: 1px solid #CCCCCC;
+	display: flex;
+}
+.pick_top_span,.pick_top_span01,.pick_top_span02{
+	flex: auto;
+	text-align: center;
+	line-height: 40px;
+	border-right: 1px solid #d7d7d7;
+	height: 40px;
+	color: black;
+}
+.pick_top span:nth-child(3){
+	border: none;
+}
+.pickContent01,pickContent03,pickContent02{
+	width:100%;
+}
+.pick_bottomContent02,.pick_bottomContent03,.pick_bottomContent04,.pick_bottomContent05{
+	display: none;
+}
+.pick_top_span:nth-child(5){
+	border: none;
+}
+/*页面底部*/
+.footer{
+	width: 100%;
+	height: 134px;
+	background-color:#333333;
+	text-align: center;
+	font-size: 14px;
+	color: #D7D7D7;
+	line-height: 100px;
+	margin-top: 20px;
+}

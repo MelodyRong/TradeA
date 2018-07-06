@@ -1,0 +1,34 @@
+/*用户指南*/
+.user_fingerpost{
+	border: 1px solid #D7D7D7;
+	margin-top: 30px;
+	padding:30px;
+}
+.user_fingerpost h1{
+	text-align: center;
+}
+.user_fingerpost_content{
+	margin-top: 50px;
+}
+.user_fingerpost_content h2{
+	font-weight: 700;
+	margin-top: 20px;
+}
+.user_fingerpost_content img{
+	width: 700px;
+	margin-top: 20px;
+}
+.user_fingerpost_content a{
+	color: blue;
+}
+/*页面底部*/
+.footer{
+	width: 100%;
+	height: 134px;
+	background-color:#333333;
+	text-align: center;
+	font-size: 14px;
+	color: #D7D7D7;
+	line-height: 100px;
+	margin-top: 20px;
+}

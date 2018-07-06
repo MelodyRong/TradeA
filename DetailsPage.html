@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品详情</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" href="css/header.css">
+		<link rel="stylesheet" type="text/css" href="css/DetailsPage.css"/>
+		<link rel="stylesheet" href="css/myAlert.min.css">
+		<link rel="stylesheet" href="css/swiper-4.3.3.min.css">
+	</head>
+	<body>
+		<!--顶部登录导航-->
+		<div class="top">
+			<div class="top_dg w clearfix">
+				<p class="top_dg_left">您好！欢迎来到艺术商城官方网站</p>
+				<ul class=" top_dg_right clearfix" id="top_dg_right">
+					<li class="top_dg_right_list"><a href="loginPage.html" id="loginstate">登录</a></li>
+					<li class="top_dg_right_list">|</li>
+					<li class="top_dg_right_list" id="register"><a href="registerPage.html">注册</a></li>
+					<li class="top_dg_right_list" id="mycentent05">|</li>
+					<li class="top_dg_right_list" id="mycentent01" style="display: none;"><a href="MyCenter.html">个人中心</a></li>
+					<li class="top_dg_right_list" id="mycentent02" style="display: none;">|</li>
+					<li class="top_dg_right_list" id="mycentent03" style="display: none;"><a href="myInterest.html">我的关注</a>
+					</li>
+					<li class="top_dg_right_list" id="mycentent04" style="display: none;">|</li>
+					<li class="top_dg_right_list" id="issueBuy" style="display: none;"><a href="issueBuyPage.html">发布购入</a></li>
+					<li class="top_dg_right_list" id="issueBuyS" style="display: none;">|</li>
+					<li class="top_dg_right_list" id="issueSell" style="display: none;"><a href="issueSellPage.html">发布售出</a></li>
+					<li class="top_dg_right_list" id="issueSellS" style="display: none;">|</li>
+					<li class="top_dg_right_list DownloadLink" id="DownloadLink">
+						<div class="download">下载移动端APP</div>
+						<div class="downloadApp">
+							<a href="https://itunes.apple.com/cn/app/%E5%96%9D%E5%BD%A9%E8%89%BA%E6%9C%AF%E5%95%86%E5%9F%8E/id1385313575?mt=8" style="color: blue;">下载iOS端应用</a>
+							<a href="" style="color: blue;">下载安卓端应用</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--顶部搜索导航-->
+		<div class="search">
+			<div class="search_top w clearfix">
+				<div class="search_top_left">
+							<img src="img/log.jpg" style="width: 100%">
+						</div>
+				<div class="search_top_right">
+					<button class="search_button">搜索</button>
+					<input class="search_inpOne" type="text" placeholder="请输入搜索内容" id="search_inpOne">
+					<span class="search_span">|</span>
+					<input type="image" src="img/big.png" class="search_inpTwo" id="search_inpTwo">
+				</div>
+			</div>
+			<div class="search_bottom  clearfix">
+				<div class="w">
+					<div class="search_bottom_listLeft">
+						<div class="list_top"  id="list_top" accesskey="0">全部商品分类</div>
+						<div class="list_bottom">
+							<ul class="classifyUl">
+								<li class="listone">
+									<ul class="son son1">
+									</ul>
+									<ul class="son son2">
+									</ul>
+									<ul class="son son3">
+									</ul>
+									<ul class="son son4">
+									</ul>
+									<ul class="son son5">
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="search_bottom_listRight">
+						<ul class="listUl clearfix">
+							<li><a href="index.html" class="listA">首页</a></li>
+							<li><a href="informationPage.html" class="listA">资讯</a></li>
+							<li><a href="noticePage.html" class="listA">公告</a></li>
+							<li><a href="Consignment.html" class="listA">寄卖</a></li>
+							<li><a href="fingerpostPage.html" class="listA">指南</a></li>
+							<li id="service"><img src="img/service.png" alt=""></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--详情内容+买卖-->
+		<div class="Details_Content w">
+			<div class="Details_Content_top clearfix">
+				<div class="Show clearfix">
+					<!--商品图片-->
+					<div class="commodityImageWrap">
+						<div class="swiper-container" style="width: 100%;height: 100%">
+							<div class="swiper-wrapper" style="width: 100%;height: 100%" id="swiper-wrapper">
+
+							</div>
+							<!--小圆点-->
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+					<div class="price_name">
+						<p id="commodityName"></p>
+						<p class="commodityID" id="commodityID"></p>
+						<div class="collect" id="collect">
+							<p style="line-height: 30px">收藏</p>
+						</div>
+					</div>				
+				</div>
+				<div class="Show_price_tb">
+					<ul class="clearfix price_list">
+						<li>
+							基础价
+							<p class="BasicPrice" id="basicPrice"></p>
+						</li>
+						<li>
+							升值幅
+							<p class="Appreciation" id="appreciation"></p>
+						</li>
+						<li>
+							最高价
+							<p class="max_limit" id="maximumAmount"></p>
+						</li>
+						<li>
+							最低价
+							<p class="min_limit" id="minimumPrice"></p>
+						</li>
+						<li>
+							销售总量
+							<p class="market_gross" id="totalSalesVolume"></p>
+						</li>
+						<li>
+							销售总额
+							<p class="market_rental" id="totalSales"></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="Detils_Content_middle w clearfix">
+				<!--采购，售出，采购售出列表-->
+				<div class="Detils_Content_dealLeft">
+					<div class="dealLeft_top clearfix">
+						<!--<p style="float: left;width: auto;">交割仓库：南京托管库  单位：张</p>-->
+						<p style="float: right;width: auto;" class="newPrice" id="newPrice"></p>
+					</div>
+					<div class="dealRight_bottom clearfix">
+						<div class="dealRight_left">
+							<div class="dealRight_left_CGJ">
+								<span class="dealRight_left_CGJ_p1">购入价格</span>
+								<!--<span class="dealRight_left_CGJ_p2">范围：0.44到0.8</span>-->
+							</div>
+							<div class="dealRight_left_CGJInp">
+								<span class="dealRight_left_CGJInp_span">购入价</span>
+								<input type="text" class="dealRight_left_CGJInp_Inp" placeholder="请输入商品价格" id="price">
+							</div>
+							<div class="dealRight_left_CGL">
+								<p class="dealRight_left_CGL_p">购入数量</p>
+							</div>
+							<div class="dealRight_left_CGLInp">
+								<span class="dealRight_left_CGLInp_span">购入量</span>
+								<input type="text" class="dealRight_left_CGLInp_inp" placeholder="请输入购入数量" id="number">
+							</div>
+							<div class="dealRight_left_YXQ">
+								<p class="dealRight_left_YXQ_p">有效日期</p>
+							</div>
+							<div class="dealRight_left_YQInp">
+								<span class="dealRight_left_YQInp_span">有效期</span>
+								<input type="date" placeholder="请选择日期" class="dealRight_left_YQInp_inp" id="dealRight_left_YQInp_inp_g">
+							</div>
+							<div class="dealRight_left_KYZJ clearfix">
+								<div class="dealRight_left_KYZJ_spanOne">
+									<span class="dealRight_left_KYZJ_span01">可用资金:</span>
+									<span class="dealRight_left_KYZJ_span02" id="dealRight_left_KYZJ_span02">--</span>
+								</div>
+							</div>
+							<button class="dealRight_left_LJCG_btn" id="dealRight_left_LJCG_btng" accesskey="2">购入摘牌</button>
+						</div>
+						<div class="dealRight_right">
+							<div class="dealRight_left_CGJ">
+								<span class="dealRight_left_CGJ_p1">销售价格</span>
+								<!--<span class="dealRight_left_CGJ_p2">范围：0.44到0.8</span>-->
+							</div>
+							<div class="dealRight_left_CGJInp">
+								<span class="dealRight_left_CGJInp_span">销售价</span>
+								<input type="text" class="dealRight_left_CGJInp_Inp" placeholder="请输入商品价格" id="g_price">
+							</div>
+							<div class="dealRight_left_CGL">
+								<p class="dealRight_left_CGL_p">销售数量</p>
+							</div>
+							<div class="dealRight_left_CGLInp">
+								<span class="dealRight_left_CGLInp_span">销售量</span>
+								<input type="text" class="dealRight_left_CGLInp_inp" placeholder="请输入销售数量" id="g_number">
+							</div>
+							<div class="dealRight_left_YXQ">
+								<p class="dealRight_left_YXQ_p">有效日期</p>
+							</div>
+							<div class="dealRight_left_YQInp">
+								<span class="dealRight_left_YQInp_span">有效期</span>
+								<input type="date" placeholder="请选择日期" class="dealRight_left_YQInp_inp" id="dealRight_left_YQInp_inp_m">
+							</div>
+							<div class="dealRight_left_KYZJ clearfix">
+								<div class="dealRight_left_KYZJ_spanOne">
+									<span class="dealRight_left_KYZJ_span01">可用数量：</span>
+									<span class="dealRight_left_KYZJ_span02" id="balance02"></span>
+								</div>
+							</div>
+							<button class="dealRight_left_LJCG_btn" id="dealRight_left_LJCG_btns" accesskey="1">售出摘牌</button>
+						</div>
+					</div>
+				</div>
+				<div class="Detils_Content_listRight">
+					<!--价格数量-->
+					<div class="Detils_Content_listRight_title">
+						<span></span>
+						<span>姓名</span>
+						<span>价格</span>
+						<span>数量</span>
+						<span>操作</span>
+					</div>
+					<!--售出-->
+					<div class="Detils_Content_listRight_contentS" id="Detils_Content_listRight_contentX">
+
+					</div>
+					<!--采购-->
+					<div class="Detils_Content_listRight_contentC" id="Detils_Content_listRight_contentC">
+
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="Details_Content_bottom w">
+				<!--商品详情，采购记录tab切换-->
+				<div class="Details_Content_bottom_title w">
+					<span class="spanStyle">商品属性</span>
+					<span>成交记录</span>
+				</div>
+				<div class="Details_Content_bottom_content w">
+					<!--商品详情-->
+					<div class="Details_Content_particulars DetailsPages" id="DetailsPages">
+						<div class="introduce" id="introduceName"></div>
+						<div class="introduce" id="introduceCode"></div>
+						<div class="introduce" id="introduceRefunding"></div>
+						<div class="introduce" id="introducedescribe"></div>
+					</div>
+					<!--销售记录-->
+					<div class="Details_Content_salesRecord DetailsPages clearfix">
+						<div class="DetailsPagesLeft">
+							<div class="DetailsPagesLeft_title">
+								<span class="DetailsPagesLeft_titleSpan01">成交时间</span>
+								<span class="DetailsPagesLeft_titleSpan01">成交类型</span>
+								<span class="DetailsPagesLeft_titleSpan01">成交数量</span>
+							</div>
+							<div class="DetailsPagesLeft_content" id="DetailsPagesLeft_content">
+
+							</div>
+						</div>
+						<div class="DetailsPagesRight">
+							<div class="DetailsPagesLeft_title">
+								<span class="DetailsPagesLeft_titleSpan01">成交时间</span>
+								<span class="DetailsPagesLeft_titleSpan01">成交类型</span>
+								<span class="DetailsPagesLeft_titleSpan01">成交数量</span>
+							</div>
+							<div class="DetailsPagesRight_content" id="DetailsPagesRight_content">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!--footer-->
+		<div class="footer">
+			<!--合作伙伴，页面底部-->
+			<p style="height: 50px;">地址：上海市黄浦区瑞金南路1号  海兴广场31楼  客服热线： 021-64033563   公司传真： 021-64032735</p>
+			<p style="height: 50px;">Copyright 2017 - 2018 沪ICP备18010533号-1 上海喝彩实业有限公司</p>
+		</div>
+	</body>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="application/javascript" src="js/DetailsPage.js"></script>
+</html>

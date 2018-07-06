@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" href="css/myAlert.min.css">
+		<link rel="stylesheet" type="text/css" href="css/registerPage.css"/>
+	</head>
+	<body>
+		<div class="w top_log clearfix" id="top_log">
+			<div class="logLeft">
+				<img src="img/log.jpg" style="width: 100%"/>
+			</div>
+			<div class="logRight">
+				<p>欢迎来到喝彩艺术商城官方网站</p>
+			</div>
+		</div>
+		<div class="w reg">
+			<div class="reg_top" style="display: flex">
+				<div class="reg_top_title" style="flex: auto;">
+					<img src="img/pop.png" alt="" />
+					<span>填写注册信息</span>
+				</div>
+				<div class="reg_top_right" style="flex: auto;text-align: right;margin-right: 50px">
+					<span>已有账号?</span>
+					<a href="loginPage.html" style="color: red;display: inline-block">请登录>></a>
+				</div>
+			</div>
+			<div class="reg_bottom">
+				<div class="zf">
+					<div class="zf_left">
+						<div class="zc_key">
+							<!--<span class="star">*</span>-->
+							<span>邀请码：</span>
+							<input type="text" placeholder="请输入邀请码" class="case" id="regCode">
+						</div>
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>手机号码：</span>
+							<input type="text" placeholder="请输入手机号" class="case" id="phoneCode" >
+						</div>
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>验证码：</span>
+							<input type="text" placeholder="请输入验证码" class="case" id="verCode">
+						</div>
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>账户类型：</span>
+							<select name="" id="accountType" class="case" style="width: 16rem">
+								<option value="1" selected="selected">个人账户</option>
+								<option value="6">企业账户</option>
+								<option value="3">个人分销商账户</option>
+								<option value="5">企业分销商账户</option>
+							</select>
+						</div>
+					</div>
+					<div class="zf_left">
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>设置密码：</span>
+							<input type="password" placeholder="请输入6-20数字和英文" class="case" id="pswCode">
+						</div>
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>确认密码：</span>
+							<input type="password" placeholder="两次输入的密码请保持一致" class="case" id="repswCode">
+						</div>
+						<div class="YZ_key">
+							<input type="button" value="获取验证码" id="YZcode" class="YZcode">
+						</div>
+
+					</div>
+				</div>
+				<input class="inpSave" type="submit" value="注册" id="inpSave" />
+				<div class="checkboxInp">
+					<div>
+						<input type="checkbox" checked id="UserAgreement"/>
+						<span>我已阅读并同意</span>
+						<a href="UserAgreement.html" style="color: red;">《商城用户协议》</a>
+					</div>
+					<div>
+						<input type="checkbox" checked id="UserSharing"/>
+						<span>我已阅读并同意</span>
+						<a href="OrderToShare.html" style="color: red;">《订单共享与安全》</a>
+					</div>
+					<div>
+						<input type="checkbox" checked id="Userprivacy"/>
+						<span>我已阅读并同意</span>
+						<a href="privacyPolicyPage.html" style="color: red;">《喝彩艺术商城隐私政策》</a>
+					</div>
+					<div>
+						<input type="checkbox" checked id="Userrisk"/>
+						<span>我已阅读并同意</span>
+						<a href="riskManagement.html" style="color: red;">《喝彩艺术商城风险管理办法》</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<!--合作伙伴，页面底部-->
+			<p style="height: 50px;">地址：上海市黄浦区瑞金南路1号  海兴广场31楼  客服热线： 021-64033563   公司传真： 021-64032735</p>
+			<p style="height: 50px;">Copyright 2017 - 2018 沪ICP备18010533号-1 上海喝彩实业有限公司</p>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" src="js/registerPage.js"></script>
+</html>

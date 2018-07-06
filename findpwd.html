@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>找回密码</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/registerPage.css"/>
+		<link rel="stylesheet" href="css/myAlert.min.css">
+	</head>
+	<body>
+		<div class="w top_log clearfix" id="top_log">
+			<div class="logLeft">
+				<img src="img/log.jpg" style="width: 100%"/>
+			</div>
+			<div class="logRight">
+				<p>欢迎来到喝彩艺术商城官方网站</p>
+			</div>
+		</div>
+		<div class="w reg">
+			<div class="reg_top">
+				<div class="reg_top_title">
+					<img src="img/pop.png" alt="" />
+					<span>忘记密码</span>
+				</div>
+			</div>
+			<div class="reg_bottom">
+				<div class="zf">
+					<div class="zf_left">
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>手机号码：</span>
+							<input type="text" placeholder="请输入手机号码" class="case" id="phoneCode" >
+						</div>
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>验证码：</span>
+							<input type="text" placeholder="请输入验证码" class="case" id="verCode" style="width:140px;">
+							<input type="button" value="获取验证码" id="YZcode" class="YZcode" style="width: 95px;background: #E43A3D;border-radius:4px;height:40px;">
+						</div>
+					</div>
+					<div class="zf_left">
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>设置密码:</span>
+							<input type="password" placeholder="请输入密码" class="case" id="pswCode">
+						</div>
+						<div class="zc_key">
+							<span class="star">*</span>
+							<span>确认密码:</span>
+							<input type="password" placeholder="请重复输入密码" class="case" id="repswCode">
+						</div>
+					</div>
+				</div>
+				<div style="margin-top: 100px;">
+					<input class="inpSave" type="submit" value="确定" id="inpSave" />
+					<input class="inpReset" type="reset" value="重置" id="inpRESET"/>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<!--合作伙伴，页面底部-->
+			<p style="height: 50px;">地址：上海市黄浦区瑞金南路1号  海兴广场31楼  客服热线： 021-64033563   公司传真： 021-64032735</p>
+			<p style="height: 50px;">Copyright 2017 - 2018 沪ICP备18010533号-1 上海喝彩实业有限公司</p>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" src="js/findpwd.js"></script>
+</html>

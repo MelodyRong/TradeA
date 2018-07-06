@@ -1,0 +1,42 @@
+/*content*/
+.perCenter{
+	margin-top:20px;
+	margin-bottom: 20px;
+	display: flex;
+}
+.journalism{
+	font-size: 16px;
+}
+.spanLeft{
+	display: inline-block;
+	width: auto;
+	float: left;
+	margin-left: 20px;
+}
+.spanRight{
+	display: inline-block;
+	width: auto;
+	float: right;
+	margin-right: 20px;
+}
+.information{
+	flex: auto;
+	/*border: 1px solid #d7d7d7;*/
+}
+.perCenterLeft{
+
+}
+.perCenterRight{
+
+}
+/*页面底部*/
+.footer{
+	width: 100%;
+	height: 134px;
+	background-color:#333333;
+	text-align: center;
+	font-size: 14px;
+	color: #D7D7D7;
+	line-height: 100px;
+	margin-top: 20px;
+}

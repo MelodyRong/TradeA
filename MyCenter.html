@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <link rel="stylesheet" href="css/myAlert.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/MyCenter.css"/>
+</head>
+<body>
+<!--顶部登录导航-->
+<div class="top">
+    <div class="top_dg w clearfix">
+        <p class="top_dg_left">您好！欢迎来到艺术商城官方网站</p>
+        <ul class=" top_dg_right clearfix" id="top_dg_right">
+            <li class="top_dg_right_list"><a href="loginPage.html" id="loginstate">登录</a></li>
+            <li class="top_dg_right_list">|</li>
+            <li class="top_dg_right_list" id="register"><a href="registerPage.html">注册</a></li>
+            <li class="top_dg_right_list" id="mycentent05">|</li>
+            <li class="top_dg_right_list" id="mycentent01" style="display: none;"><a href="MyCenter.html">个人中心</a></li>
+            <li class="top_dg_right_list" id="mycentent02" style="display: none;">|</li>
+            <li class="top_dg_right_list" id="mycentent03" style="display: none;"><a href="myInterest.html">我的关注</a>
+            </li>
+            <li class="top_dg_right_list" id="mycentent04" style="display: none;">|</li>
+            <li class="top_dg_right_list" id="issueBuy" style="display: none;"><a href="issueBuyPage.html">发布购入</a></li>
+            <li class="top_dg_right_list" id="issueBuyS" style="display: none;">|</li>
+            <li class="top_dg_right_list" id="issueSell" style="display: none;"><a href="issueSellPage.html">发布售出</a>
+            </li>
+            <li class="top_dg_right_list" id="issueSellS" style="display: none;">|</li>
+            <li class="top_dg_right_list DownloadLink" id="DownloadLink">
+                <div class="download">下载移动端APP</div>
+                <div class="downloadApp">
+                    <a href="https://itunes.apple.com/cn/app/%E5%96%9D%E5%BD%A9%E8%89%BA%E6%9C%AF%E5%95%86%E5%9F%8E/id1385313575?mt=8"
+                       style="color: blue;">下载iOS端应用</a>
+                    <a href="" style="color: blue;">下载安卓端应用</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--顶部搜索导航-->
+<div class="search">
+    <div class="search_top w clearfix">
+        <div class="search_top_left">
+            <img src="img/log.jpg" style="width: 100%">
+        </div>
+        <div class="search_top_right">
+            <button class="search_button">搜索</button>
+            <input class="search_inpOne" type="text" placeholder="请输入搜索内容" id="search_inpOne">
+            <span class="search_span">|</span>
+            <input type="image" src="img/big.png" class="search_inpTwo" id="search_inpTwo">
+        </div>
+    </div>
+    <div class="search_bottom  clearfix">
+        <div class="w">
+            <div class="search_bottom_listLeft">
+                <div class="list_top" id="list_top" accesskey="0">全部商品分类</div>
+                <div class="list_bottom">
+                    <ul class="classifyUl">
+                        <li class="listone">
+                            <ul class="son son1">
+                            </ul>
+                            <ul class="son son2">
+                            </ul>
+                            <ul class="son son3">
+                            </ul>
+                            <ul class="son son4">
+                            </ul>
+                            <ul class="son son5">
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="search_bottom_listRight">
+                <ul class="listUl clearfix">
+                    <li><a href="index.html" class="listA">首页</a></li>
+                    <li><a href="informationPage.html" class="listA">资讯</a></li>
+                    <li><a href="noticePage.html" class="listA">公告</a></li>
+                    <li><a href="Consignment.html" class="listA">寄卖</a></li>
+                    <li><a href="fingerpostPage.html" class="listA">指南</a></li>
+                    <li id="service"><img src="img/service.png" alt=""></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="perCenter w clearfix">
+    <div class="perCenter_left">
+        <ul class="perCenter_left_ul" id="perCenter_left_ul">
+            <li class="per_title information">个人信息管理</li>
+            <li class="per_td">个人信息</li>
+            <li class="per_td" id="perfectGR">完善个人信息</li>
+            <li class="per_td" id="perfectQY">完善企业信息</li>
+            <li class="per_td">修改登录密码</li>
+            <li class="per_title myFund">我的资金</li>
+            <li class="per_td">账户余额/充值/提现</li>
+            <li class="per_td">提现历史记录</li>
+            <li class="per_td">资金流水</li>
+            <li class="per_td">推荐奖励</li>
+            <li class="per_td">促销赠送</li>
+            <li class="per_title pickUp">提货管理</li>
+            <li class="per_td">我的提货</li>
+            <li class="per_title workOff">售出管理</li>
+            <li class="per_td">我的售出</li>
+            <li class="per_td" id="MyDistribution">我的分销记录</li>
+            <li class="per_title buy">购入管理</li>
+            <li class="per_td">我的购入</li>
+            <li class="per_title promotion">促销管理</li>
+            <li class="per_td">我的促销商品</li>
+            <li class="per_title position">持仓管理</li>
+            <li class="per_td">我的寄卖商品</li>
+        </ul>
+    </div>
+    <div class="perCenter_right">
+        <!--个人信息-->
+        <div class="per_details">
+            <div class="per_perfect">
+                <img src="img/pop.png" style="margin-left: 35px;width: 30px;"/>
+                个人信息
+            </div>
+            <div>
+                <!--这里的姓名和绑定手机号是用户注册时的姓名手机号不可修改-->
+                <label for="">姓名</label>
+                <input type="text" class="forinp" placeholder="您的姓名" disabled id="userName"/>
+                <hr/>
+                <label for="">绑定手机</label>
+                <input type="text" class="forinp" placeholder="您的手机号码" disabled id="userPhone"/>
+                <hr/>
+                <label for="">邀请码</label>
+                <input type="text" class="forinp" placeholder="您的邀请码" disabled id="userCode"/>
+            </div>
+        </div>
+        <!--完善个人信息-->
+        <div class="per_details hide" id="personage">
+            <div class="per_perfect">
+                <img src="img/pop.png" style="margin-left: 35px;"/>
+                完善个人信息
+            </div>
+            <div>
+                <!--这里的姓名和绑定手机号是用户注册时的姓名手机号不可修改-->
+                <label for="">姓名</label>
+                <input type="text" class="forinp" placeholder="请输入您的姓名" id="userIdName"/>
+                <hr/>
+                <label for="">绑定手机</label>
+                <input type="text" class="forinp" placeholder="请输入您的手机号码" id="userIdPhone"/>
+                <span style="color: red">*  请填写银行预留手机号码</span>
+                <hr/>
+                <label for="">证件号码</label>
+                <input type="text" class="forinp" placeholder="请输入您的二代居民身份证号码" id="useridcard"/>
+                <div class="cardWrap">
+                    <form id="uploadForm01" enctype="multipart/form-data">
+                        <div id="preview01">
+                            <label for="" class="cardLabel">身份证正面：</label>
+                            <input id="imgFile01" type="file" name="imgFile" value="选择身份证正面照片"/>
+                        </div>
+                    </form>
+                    <form id="uploadForm02" enctype="multipart/form-data">
+                        <div id="preview02">
+                            <label for="" class="cardLabel">身份证反面：</label>
+                            <input id="imgFile02" type="file" name="imgFile"/>
+                        </div>
+                    </form>
+                    <form id="uploadForm03" enctype="multipart/form-data">
+                        <div id="preview03">
+                            <label for="" class="cardLabel">手持身份证：</label>
+                            <input id="imgFile03" type="file" name="imgFile"/>
+                        </div>
+                    </form>
+                </div>
+                <hr/>
+                <label for="">银行卡账号：</label>
+                <input type="text" class="forinp" placeholder="请输入您的常用银行卡账号" id="bankAccount"/>
+                <hr/>
+                <label for="">银行名称：</label>
+                <input type="text" class="forinp" placeholder="请输入您的银行卡账号所属银行" id="BelongsBank"/>
+                <hr/>
+                <label for="">收货地址</label>
+                <input type="text" class="forinp" style="width: 30rem;" placeholder="请输入您常用收货地址" id="ShippingAddress"/>
+                <hr/>
+                <div class="inpbtn">
+                    <input type="submit" value="提交" id="submit"/>
+                </div>
+            </div>
+        </div>
+        <!--完善企业信息-->
+        <div class="per_details hide" id="enterprise">
+            <div class="per_perfect">
+                <img src="img/pop.png" style="margin-left: 35px;"/>
+                完善企业信息
+            </div>
+            <div>
+                <!--这里的姓名和绑定手机号是用户注册时的姓名手机号不可修改-->
+                <label for="">企业名称</label>
+                <input type="text" class="forinp" placeholder="请输入企业名称" id="enterpriseName"/>
+                <hr/>
+                <label for="">联系人手机号码</label>
+                <input type="text" class="forinp" placeholder="请输入企业联系人手机号码" id="enterprisePhone"/>
+                <hr/>
+                <label for="">社会统一信用代码</label>
+                <input type="text" class="forinp" placeholder="请输入18位社会统一信用代码" id="creditCode"/>
+                <div class="cardWrap">
+                    <form id="uploadForm05" enctype="multipart/form-data">
+                        <div id="preview04">
+                            <label for="" class="cardLabel">上传营业执照：</label>
+                            <input id="imgFile04" type="file" name="imgFile" value="选择营业执照"/>
+                        </div>
+                    </form>
+                </div>
+                <hr/>
+                <label for="">银行卡账号：</label>
+                <input type="text" class="forinp" placeholder="请输入您的常用银行卡账号" id="bankCompany"/>
+                <hr/>
+                <label for="">所属银行：</label>
+                <input type="text" class="forinp" placeholder="请输入您的银行卡账号所属银行" id="CompanyBank"/>
+                <hr/>
+                <label for="">收货地址</label>
+                <input type="text" class="forinp" style="width: 30rem;" placeholder="请输入您常用收货地址" id="CompanyAddress"/>
+                <hr/>
+                <div class="inpbtn">
+                    <input type="submit" value="提交" id="Companysubmit"/>
+                </div>
+
+            </div>
+        </div>
+        <!--修改登录密码-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/lock.png" style="margin-left: 35px;"/>
+                修改登录密码
+            </div>
+            <label for="">手机号</label>
+            <input type="text" class="forinp" placeholder="请输入手机号" id="phoneCode"/>
+            <hr/>
+            <label for="">新密码</label>
+            <input type="password" class="forinp" placeholder="请输入新密码" id="newPwd"/><span
+                style="margin-left: 35px;font-size: 16px;">新密码至少6位数字+字母组成</span>
+            <hr/>
+            <label for="">重复新密码</label>
+            <input type="password" class="forinp" placeholder="请重复新密码" id="cf_newPwd"/>
+            <hr/>
+            <label for="">手机验证码</label>
+            <input type="text" class="forinp" placeholder="请输入手机验证码" id="yzm"/>
+            <span class="btn_ver" id="btn_ver">获取短信验证码</span>
+            <hr/>
+            <div class="inpbtn">
+                <input type="submit" value="提交" id="sumbit_xgPwd"/>
+                <input type="reset" value="重置"/>
+            </div>
+        </div>
+        <!--账户余额/充值/提现-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/money.png" style="margin-left: 35px;"/>
+                账户余额/充值/提现
+            </div>
+            <div class="bottom_play">
+                <div class="bottom_play_top clearfix">
+                    <div class="usable">
+                        <p>全部资金/元</p>
+                        <p id="Buyout"></p>
+                    </div>
+                    <div class="usable">
+                        <p>可用资金/元</p>
+                        <p id="available_balance"></p>
+                    </div>
+                    <div class="freeze">
+                        <p>冻结资金/元</p>
+                        <p id="frozen_capital"></p>
+                    </div>
+                </div>
+                <div class="bottom_play_bottom clearfix">
+                    <div class="recharge">
+                        <div class="recharge_money">
+                            <p>充值金额：</p>
+                            <span class="topUp">2000</span>
+                            <span class="topUp">4000</span>
+                            <span class="topUp">6000</span>
+                            <span class="topUp">8000</span>
+                            <span class="topUp">10000</span>
+                            <input type="text" placeholder="自定义金额" class="custom_money" id="topUpMoney"/>
+                        </div>
+                        <input type="button" value="确认充值" id="affirm_recharge" class="btn_recharge affirm"/>
+                    </div>
+                    <div class="deposit">
+                        <div class="deposit_money">
+                            <p>提现金额：</p>
+                            <span class="depositSpan ">2000</span>
+                            <span class="depositSpan">4000</span>
+                            <span class="depositSpan">6000</span>
+                            <span class="depositSpan">8000</span>
+                            <span class="depositSpan">10000</span>
+                            <input type="text" placeholder="自定义金额" class="custom_money" id="custom_money"/>
+                        </div>
+                        <input type="button" value="确认提现" id="affirm_deposit" class="btn_deposit affirm"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--提现历史记录-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/money.png" style="margin-left: 35px;"/>
+                提现记录
+            </div>
+            <div class="bottom_play" id="Withdrawal_record">
+                <div class="Withdrawal_record_top">
+                    <span>单号</span>
+                    <span>金额</span>
+                    <span>状态</span>
+                    <span>备注</span>
+                    <span>操作</span>
+                </div>
+                <div class="Withdrawal_record_bottom">
+                    <ul id="WithdrawalRecordContent"></ul>
+
+                    <!--分页-->
+                    <div class="m-style WithdrawalHistory" id="WithdrawalHistory"></div>
+                </div>
+            </div>
+        </div>
+        <!--资金流水-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/money.png" style="margin-left: 35px;"/>
+                资金流水
+            </div>
+            <div class="bottom_play" id="capital">
+                <div class="bottom_play" id="capital_bills">
+                    <div class="capital_bills_top">
+                        <span>资金类型</span>
+                        <span>金额</span>
+                        <span>订单号</span>
+                        <span>时间</span>
+                    </div>
+                    <div class="capital_bills_bottom" style="padding-bottom: 20px">
+                        <ul id="capitalBillsContent"></ul>
+                        <!--分页-->
+                        <div id="demo4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--推荐奖励-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/money.png" style="margin-left: 35px;"/>
+                推荐奖励
+            </div>
+            <div class="bottom_play" id="recommend">
+                <div class="bottom_play" id="recommend_award">
+                    <div class="capital_bills_top">
+                        <span>手机号码</span>
+                        <span>时间</span>
+                        <span>类型</span>
+                        <span>金额</span>
+                    </div>
+                    <div class="capital_bills_bottom">
+                        <ul id="recommendAwardContent"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--促销赠送-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/money.png" style="margin-left: 35px;"/>
+                促销赠送
+            </div>
+            <div class="bottom_play" id="promotion">
+                <div class="bottom_play" id="promotion_present">
+                    <div class="capital_bills_top">
+                        <span>商品</span>
+                        <span>返利金额</span>
+                        <span>订单号</span>
+                        <span>时间</span>
+                    </div>
+                    <div class="capital_bills_bottom">
+                        <ul id="promotionPresentContent"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--我的提货-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/indent_1.png" style="margin-left: 35px;"/>
+                提货查询
+            </div>
+            <div class="bottom_play" id="pickUpList">
+                <div class="bottom_play" id="pickUpList_wrap">
+                    <div class="pickUpList_top">
+                        <span>商品</span>
+                        <span>数量</span>
+                        <span>方式</span>
+                        <span>状态</span>
+                        <span>单据</span>
+                        <span>操作</span>
+                    </div>
+                    <div class="pickUpList_bottom" style="padding-top: 20px">
+                        <ul id="pickUpListContent" style="height: 950px"></ul>
+
+                        <!--分页-->
+                        <!--<div class="m-style M-box22" style="margin-top: 20px"></div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--我的售出-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/workOff.png" style="margin-left: 35px;"/>
+                售出记录
+            </div>
+            <div class="pick">
+                <div class="pick_top">
+                    <span class="pick_top_span" style="background-color:#e7bb1c;color: black;">全部</span>
+                    <span class="pick_top_span">待成交</span>
+                    <span class="pick_top_span">已成交</span>
+                </div>
+                <div class="pick_bottom">
+                    <!--全部-->
+                    <div class="pick_bottomContent01 workOffList">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>时间</li>
+                            <li>状态</li>
+                            <li>有效期</li>
+                            <li style="border-right: none;">操作</li>
+                        </ul>
+                        <div class="pickUpList_bottom">
+                            <ul id="workOffAllListContent"></ul>
+
+                            <!--分页-->
+
+                        </div>
+                    </div>
+                    <!--待成交-->
+                    <div class="pick_bottomContent02 workOffList">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>时间</li>
+                            <li>状态</li>
+                            <li>有效期</li>
+                            <li style="border-right: none;">操作</li>
+                        </ul>
+                        <div class="pickUpList_bottom">
+                            <ul id="workOffStayListContent"></ul>
+                        </div>
+                    </div>
+                    <!--已成交-->
+                    <div class="pick_bottomContent03 workOffList">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>时间</li>
+                            <li>状态</li>
+                            <li>有效期</li>
+                            <li style="border-right: none;">操作</li>
+                        </ul>
+                        <div class="pickUpList_bottom">
+                            <ul id="workOffEndListContent"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--我的分销记录-->
+        <div class="per_details hide" id="distributionRecord">
+            <div class="per_perfect">
+                <img src="img/workOff.png" style="margin-left: 35px;"/>
+                分销记录
+            </div>
+            <div class="pick">
+                <div class="pick_top">
+                    <span class="pick_top_span" style="background-color:#e7bb1c;color: black;">全部</span>
+                    <span class="pick_top_span">待成交</span>
+                    <span class="pick_top_span">已成交</span>
+                </div>
+                <div class="pick_bottom">
+                    <!--全部-->
+                    <div class="pick_bottomContent01 workOffList">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>时间</li>
+                            <li>状态</li>
+                            <li>有效期</li>
+                            <li style="border-right: none;">操作</li>
+                        </ul>
+                        <div class="pickUpList_bottom">
+                            <ul id="distributionAllListContent"></ul>
+
+                            <!--分页-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--我的购入-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/buy.png" style="margin-left: 35px;"/>
+                购入记录
+            </div>
+            <div class="pick" style="display: block">
+                <div class="pick_top">
+                    <span class="pick_top_span01" style="background-color:#e7bb1c;color: black;">全部</span>
+                    <span class="pick_top_span01">未成交</span>
+                    <span class="pick_top_span01">已成交</span>
+                </div>
+                <div class="pick_bottom">
+                    <!--全部-->
+                    <div class="pick_bottomContent01 pickContent01">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>时间</li>
+                            <li>状态</li>
+                            <li>有效期</li>
+                            <li style="border-right: none;">操作</li>
+                        </ul>
+                        <div class="pickUpList_bottom">
+                            <ul id="BuyAllListContent"></ul>
+                            <!--分页-->
+                            <!--<div class="m-style M-box11"></div>-->
+                        </div>
+                    </div>
+                    <!--待成交-->
+                    <div class="pick_bottomContent02 pickContent01">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>时间</li>
+                            <li>状态</li>
+                            <li>有效期</li>
+                            <li style="border-right: none;">操作</li>
+                        </ul>
+                        <div class="pickUpList_bottom">
+                            <ul id="BuyStayListContent"></ul>
+                        </div>
+                    </div>
+                    <!--已成交-->
+                    <div class="pick_bottomContent03 pickContent01">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>时间</li>
+                            <li>状态</li>
+                            <li>有效期</li>
+                            <li style="border-right: none;">操作</li>
+                        </ul>
+                        <div class="pickUpList_bottom">
+                            <ul id="BuyEndListContent"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--我的促销-->
+        <div class="per_details hide">
+            <div class="per_perfect">
+                <img src="img/promotion.png" style="margin-left: 35px;"/>
+                促销记录
+            </div>
+            <div class="pick">
+                <div class="pick_top">
+                    <span class="pick_top_span02" style="background-color:#e7bb1c;">全部</span>
+                    <span class="pick_top_span02" style="border-right: 1px solid #d7d7d7">待收货</span>
+                    <span class="pick_top_span02">已收货</span>
+                </div>
+                <div class="pick_bottom">
+                    <!--全部-->
+                    <div class="bottom_play pickContent02" id="promotionAll_wrap">
+                        <div class="promotionAll_top">
+                            <span>订单号</span>
+                            <span>商品</span>
+                            <span>数量</span>
+                            <span>价格</span>
+                            <span>状态</span>
+                            <span>操作</span>
+                        </div>
+                        <div class="promotionAll_bottom">
+                            <ul id="promotionAllContent"></ul>
+                        </div>
+                    </div>
+                    <!--待收货-->
+                    <div class="pick_bottomContent04 pickContent02">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>状态</li>
+                            <li>操作</li>
+                        </ul>
+                        <div class="promotionAll_bottom">
+                            <ul id="promotionCollectionContent"></ul>
+                        </div>
+                    </div>
+                    <!--已收货-->
+                    <div class="pick_bottomContent05 pickContent02">
+                        <ul class="pick_title">
+                            <li>订单号</li>
+                            <li>商品</li>
+                            <li>数量</li>
+                            <li>价格</li>
+                            <li>状态</li>
+                            <li>操作</li>
+                        </ul>
+                        <div class="promotionAll_bottom">
+                            <ul id="promotionEndContent"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--我的寄卖商品-->
+        <div class="per_details hide">
+            <ul class="pick_title">
+                <li>商品名称</li>
+                <li>品相</li>
+                <li>仓库</li>
+                <li>持有</li>
+                <li>提货</li>
+                <li>提货中</li>
+                <li>冻结</li>
+                <li>寄卖</li>
+                <li style="border-right: none;">操作</li>
+            </ul>
+            <div class="holdPosition_bottom">
+                <!--我的持仓列表-->
+                <ul id="holdPositionContent"></ul>
+
+                <!--<div class="m-style M-box11" id="M-box11"></div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <!--合作伙伴，页面底部-->
+    <p style="height: 50px;">地址：上海市黄浦区瑞金南路1号 海兴广场31楼 客服热线： 021-64033563 公司传真： 021-64032735</p>
+    <p style="height: 50px;">Copyright 2017 - 2018 沪ICP备18010533号-1 上海喝彩实业有限公司</p>
+</div>
+</body>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script type="text/javascript" src="js/MyCenter.js"></script>
+</html>

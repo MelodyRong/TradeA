@@ -1,0 +1,228 @@
+/*关注详情页*/
+.content .content_bottom{
+	margin-top: 20px;
+	height: 1358px;
+	background-color: #f6f6f6;
+	overflow: hidden;
+}
+.commodityPages{
+	width: 100%;
+	height: 100%;
+}
+.listWrap .list{
+	width: auto;
+	height: auto;
+	background-color: white;
+	margin-right: 20px;
+	float: left;
+	margin: 20px 0 0 20px;
+}
+.list_image{
+	width: 280px;
+	height: 160px;
+}
+.list_name{
+	width: 280px;
+	height: auto;
+	font-size: 14px;
+	text-align: center;
+}
+.Leftmarket,.Rightpurchase{
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+.Leftmarket span:first-child,.Rightpurchase span:first-child{
+	font-size: 12px;
+}
+.Leftmarket span:last-child,.Rightpurchase span:last-child{
+	font-size: 14px;
+}
+.Leftmarket span{
+	color: green;
+}
+.Rightpurchase span{
+	color: red;
+}
+.Leftmarket_market,.Rightpurchase_purchase{
+	width: 100px;
+	height: 26px;
+	border-radius: 10px;
+	background-color: green;
+	font-size: 12px;
+	text-align: center;
+	line-height: 26px;
+	color: white;
+	margin-left:20px
+}
+.Leftmarket_market{
+	background-color: green;
+}
+.Rightpurchase_purchase{
+	background-color: red;
+}
+
+
+#content{
+	background-color: #f6f6f6;
+	margin-top: 20px;
+	height: 48px;
+	line-height: 48px;
+	color: black;
+	font-size: 18px;
+}
+.content .content_top{
+	border-bottom: 2px solid #e04034;
+}
+.topSpan{
+	display: inline-block;
+	width: 128px;
+	text-align: center;
+	height: 100%;
+}
+.content_top_spanOne{
+	background-image: url("http://web.jinwangyigou.com:16009/taospot_mobile/resources/img/btn_bg.png");
+}
+.content .content_bottom{
+	margin-top: 20px;
+	height: 1104px;
+	background-color: #f6f6f6;
+	overflow: hidden;
+}
+.content_newPages{
+	width: 100%;
+	height: 1104px;
+}
+.content_listingPages{
+	width: 100%;
+	height: auto;
+}
+.content_promotionPages{
+	width: 100%;
+	height: 1104px;
+}
+.commodityPages{
+	width: 100%;
+	height: 100%;
+}
+.listWrap .list{
+	width:23%;
+	height: auto;
+	background-color: white;
+	margin-right: 20px;
+	float: left;
+	margin: 20px 0 0 20px;
+}
+.zx_jm_rx{
+	/*用来区分最新商品，寄卖商品，热销商品与促销商品*/
+}
+.cx{
+	/*用来区分最新商品，寄卖商品，热销商品与促销商品*/
+}
+.listWrap .list01{
+	width: 47.5%;
+	height: auto;
+	background-color: white;
+	margin-right: 20px;
+	float: left;
+	margin: 20px 0 0 20px;
+}
+.rx_ul_jm{
+	width: 100%;
+	height: 50%;
+}
+.list01_left{
+	width: 50%;
+	float: left;
+}
+.list01_left img{
+	width: 100%;
+	height: 250px;
+}
+.list01_right{
+	width: 50%;
+	float: left;
+	text-align: center;
+	position: relative;
+}
+.list01_right_div{
+	position: absolute;
+	top:-46px ;
+	margin-top:50% ;
+}
+.list_image{
+	width: 280px;
+	height: 160px;
+}
+.list_name{
+	width: 280px;
+	/*height: auto;*/
+	height: 48px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 48px;
+	overflow: hidden;
+}
+.Leftmarket{
+	float: left;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	line-height: 48px;
+}
+.Leftmarkets span:first-child,.Rightpurchases span:first-child{
+	font-size: 12px;
+}
+.Leftmarkets span:last-child,.Rightpurchases span:last-child{
+	font-size: 14px;
+}
+.Leftmarket span{
+	/*color: green;*/
+}
+.Rightpurchase span{
+	/*color: red;*/
+}
+
+.Leftmarkets,.Rightpurchases{
+	float: left;
+	width: 50%;
+	text-align: center;
+	font-size: 12px;
+}
+.Leftmarkets span{
+	/*color: green;*/
+}
+.Rightpurchases span{
+	/*color: ;*/
+}
+
+
+
+.Leftmarket_market,.Rightpurchase_purchase{
+	width: 100px;
+	height: 26px;
+	border-radius: 10px;
+	background-color: green;
+	font-size: 12px;
+	text-align: center;
+	line-height: 26px;
+	color: white;
+	margin-left:20px
+}
+.Leftmarket_market{
+	background-color: green;
+}
+.Rightpurchase_purchase{
+	background-color: red;
+}
+/*页面底部*/
+.footer{
+	width: 100%;
+	height: 134px;
+	background-color:#333333;
+	text-align: center;
+	font-size: 14px;
+	color: #D7D7D7;
+	line-height: 100px;
+	margin-top: 20px;
+}

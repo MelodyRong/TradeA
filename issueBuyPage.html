@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布购入</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/myAlert.min.css">
+    <link rel="stylesheet" href="css/issueBuyPage.css">
+</head>
+<body>
+<!--顶部登录导航-->
+<div class="top">
+    <div class="top_dg clearfix w">
+        <p class="top_dg_left">您好！欢迎来到艺术商城官方网站</p>
+        <ul class=" top_dg_right clearfix" id="top_dg_right">
+            <li class="top_dg_right_list"><a href="loginPage.html" id="loginstate">登录</a></li>
+            <li class="top_dg_right_list">|</li>
+            <li class="top_dg_right_list" id="register"><a href="registerPage.html">注册</a></li>
+            <li class="top_dg_right_list" id="mycentent05">|</li>
+            <li class="top_dg_right_list" id="mycentent01" style="display: none;"><a href="MyCenter.html">个人中心</a></li>
+            <li class="top_dg_right_list" id="mycentent02" style="display: none;">|</li>
+            <li class="top_dg_right_list" id="mycentent03" style="display: none;"><a href="myInterest.html">我的关注</a>
+            </li>
+            <li class="top_dg_right_list" id="mycentent04" style="display: none;">|</li>
+            <li class="top_dg_right_list" id="issueBuy" style="display: none;"><a href="issueBuyPage.html">发布购入</a></li>
+            <li class="top_dg_right_list" id="issueBuyS" style="display: none;">|</li>
+            <li class="top_dg_right_list" id="issueSell" style="display: none;"><a href="issueSellPage.html">发布售出</a></li>
+            <li class="top_dg_right_list" id="issueSellS" style="display: none;">|</li>
+            <li class="top_dg_right_list DownloadLink" id="DownloadLink">
+                <div class="download">下载移动端APP</div>
+                <div class="downloadApp">
+                    <a href="https://itunes.apple.com/cn/app/%E5%96%9D%E5%BD%A9%E8%89%BA%E6%9C%AF%E5%95%86%E5%9F%8E/id1385313575?mt=8" style="color: blue;">下载iOS端应用</a>
+                    <a href="" style="color: blue;">下载安卓端应用</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--顶部搜索导航-->
+<div class="search">
+    <div class="search_top w clearfix">
+        <div class="search_top_left">
+            <img src="img/log.jpg">
+        </div>
+        <div class="search_top_right">
+            <button class="search_button">搜索</button>
+            <input class="search_inpOne" type="text" placeholder="请输入搜索内容" id="search_inpOne">
+            <span class="search_span">|</span>
+            <input type="image" src="img/big.png" class="search_inpTwo" id="search_inpTwo">
+        </div>
+    </div>
+    <div class="search_bottom clearfix">
+        <div class="w">
+            <div class="search_bottom_listLeft">
+                <div class="list_top" id="list_top" accesskey="0">全部商品分类</div>
+                <div class="list_bottom">
+                    <ul class="classifyUl">
+                        <li class="listone">
+                            <ul class="son son1">
+                            </ul>
+                            <ul class="son son2">
+                            </ul>
+                            <ul class="son son3">
+                            </ul>
+                            <ul class="son son4">
+                            </ul>
+                            <ul class="son son5">
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="search_bottom_listRight">
+                <ul class="listUl clearfix">
+                    <li><a href="index.html" class="listA">首页</a>
+                    </li>
+                    <li><a href="informationPage.html" class="listA">资讯</a></li>
+                    <li><a href="noticePage.html" class="listA">公告</a></li>
+                    <li><a href="Consignment.html" class="listA">寄卖</a></li>
+                    <li><a href="fingerpostPage.html" class="listA">指南</a></li>
+                    <li id="service"><img src="img/service.png" alt=""></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--content-->
+<div class="ConsignmentContent w">
+    <div class="ConsignmentContent_Wrap">
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">商品分类:</span>
+            <select name="" id="commodity">
+            </select>
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">二级分类:</span>
+            <select name="" id="e_commodity">
+            </select>
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">商品名称:</span>
+            <select name="" id="commodityName">
+            </select>
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">商品品相:</span>
+            <input class="i" type="text" id="commodityCondition" disabled>
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">价格:</span>
+            <input class="i" type="text" placeholder="参考价：" id="referenceMoney">
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">数量:</span>
+            <input class="i" type="number" placeholder="请输入商品数量" id="referenceNumber">
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">有效期:</span>
+            <input class="i" type="date" placeholder="" id="validityDate">
+        </div>
+        <div class="ConsignmentContent_JGSC">
+            <span class="s">提货仓库:</span>
+            <input class="i" type="text" placeholder="提货仓库：" id="abLager" disabled>
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">可用金额:</span>
+            <input class="i" type="text" placeholder="--" id="usablePrice" disabled>
+        </div>
+        <div class="ConsignmentContent_SPFL" style="line-height: 40px;text-align: left" id="fkfs">
+            <span class="s">支付方式:</span>
+            <input  type="radio" value="全款" name="inp"  class="inp">
+            <span class="sp">全款</span>
+            <input  type="radio" value="分期付款" name="inp" class="inp" id="inpTwo" checked="checked">
+            <span id="inpThree" class="sp">分期付款</span>
+        </div>
+        <div class="ConsignmentContent_SPFL">
+            <span class="s">支付金额:</span>
+            <input class="i" type="text" placeholder="--" id="paymentMoney" disabled>
+        </div>
+        <div class="ConsignmentContent_SPFL" style="line-height: 40px;text-align: left">
+            <span class="s">发布方式:</span>
+            <input  type="radio" value="1" style="width: auto" name="sfnm" checked="checked" class="nmfb"><span>匿名发布</span>
+            <input  type="radio" value="0" style="width: auto" name="sfnm" class="nmfb"><span>实名发布</span>
+        </div>
+        <div class="ConsignmentContent_SPFL" style="line-height: 40px;text-align: left">
+            <p style="color: red" class="fxts">尾款需成交后规定一小时内付清，否则按违约处理</p>
+        </div>
+        <div class="ConsignmentContent_Submit">
+            <button id="submitStorage">提交</button>
+        </div>
+    </div>
+</div>
+
+<!--弹框-->
+<div id="popWindow" class="popWindow" style="display: none;">
+</div>
+<div id="maskLayer" class="maskLayer" style="display: none;">
+    <div class="masking">
+        <div class="masking_title">
+            <h2>提示</h2>
+        </div>
+        <div class="masking_content">
+            <h4 id="ReleaseSuccess">发布成功，请到个人中心-我的购入中查看</h4>
+        </div>
+        <div style="position: relative;bottom: 0">
+            <div class="maskingTabBar">
+                <button class="maskingTabBar_affirm" id="confirmPayment">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <!--合作伙伴，页面底部-->
+    <p style="height: 50px;">地址：上海市黄浦区瑞金南路1号  海兴广场31楼  客服热线： 021-64033563   公司传真： 021-64032735</p>
+    <p style="height: 50px;">Copyright 2017 - 2018 沪ICP备18010533号-1 上海喝彩实业有限公司</p>
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/issueBuyPage.js"></script>
+</html>

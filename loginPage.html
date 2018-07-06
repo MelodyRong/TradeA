@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/loginPage.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" href="css/myAlert.min.css">
+	</head>
+	<body>
+		<div class="w top_log clearfix" id="top_log">
+			<div class="logLeft">
+				<img src="img/log.jpg" style="width: 100%"/>
+			</div>
+			<div class="logRight">
+				<p>欢迎来到喝彩艺术官方网站</p>
+			</div>
+		</div>
+		<div class="content_log w clearfix" id="content_log">
+			<div class="content_log_left">
+				<img src="http://web.jinwangyigou.com:16009/frontmall/resources/img/loginbg.png"/>
+			</div>
+			<div class="content_log_right">
+				<div class="loginP">
+					<span style="font-size: 30px;color: red;">登录</span>
+					<span style="font-size: 12px;margin-top:25px ;margin-left: 50px;">还没有账号,</span>
+					<a href="registerPage.html" style="font-size: 12px;color: red;">立即注册</a>
+				</div>
+				<div id="loginForm">
+					<div>
+						<label for="" class="labNumber">账号：</label>
+						<input type="text" class="inpNumber" placeholder="用户名/手机号" id="userName"/>
+					</div>
+					<div style="margin-top: 30px;">
+						<label for="" class="labNumber">密码：</label>
+						<input type="password" class="inpNumber" placeholder="登录密码" id="userPassWord"/>
+					</div>
+					<div class="findPwd clearfix">
+						<p id="forgetPsw" class="forgetPsw">忘记密码?</p>
+						<div class="rememberWrap">
+							<input type="checkbox" name="remenber" class="rememberPwd" id="rememberPwd" value="记住密码" checked><span class="rememberSpan">记住密码</span>
+						</div>
+					</div>
+					<div style="margin-top:30px">
+						<input type="submit" value="登录" class="btnLogin" id="userLogin"/>
+						<!--<input type="reset" name="" id="" value="重置" class="btnReset"/>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--页面底部-->
+		<div class="footer">
+			<!--合作伙伴，页面底部-->
+			<p style="height: 50px;">地址：上海市黄浦区瑞金南路1号  海兴广场31楼  客服热线： 021-64033563   公司传真： 021-64032735</p>
+			<p style="height: 50px;">Copyright 2017 - 2018 沪ICP备18010533号-1 上海喝彩实业有限公司</p>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/loginPage.js"></script>
+</html>

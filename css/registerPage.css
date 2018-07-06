@@ -1,0 +1,119 @@
+#top_log{
+	margin-top:20px;
+	/*height: 68px;*/
+}
+.logLeft,.logRight{
+	float: left;
+}
+.logLeft{
+	width: 300px;
+}
+.logRight{
+	background: url('http://web.jinwangyigou.com:16009/frontmall/resources/images/line.png') no-repeat left center;
+	padding-left: 30px;
+	line-height: 200px;
+	margin-left:30px;
+	color: #E43A3D;
+	font-size: 18px;
+}
+
+.reg{
+	/*height: 450px;*/
+	height: auto;
+	border:1px solid #d7d7d7;
+	background-color: white;
+	padding-bottom: 20px;
+}
+.reg_top{
+	width: 97.2%;
+	height: 68px;
+	line-height: 68px;
+	padding-left: 35px;
+	border-bottom: 1px solid #D7D7D7;
+}
+.reg_top_title span{
+	font-size: 18px;
+	color: #E43A3D;
+}
+.reg_bottom{
+	text-align: center;
+}
+.zf{
+	margin:30px auto;
+	font-size: 16px;
+	display: flex;
+	width: 60%;
+}
+.zf_left{
+	flex: auto;
+}
+.zc_key{
+	width: 350px;
+	height: 50px;
+	line-height: 50px;
+	text-align: right;
+	font-size: 14px;
+	margin-top: 20px;
+}
+.YZ_key{
+	width: 350px;
+	height: 50px;
+	line-height: 50px;
+	text-align: left;
+	font-size: 14px;
+	margin-top: 20px;
+}
+.star{
+	color: red;
+}
+.case{
+	width: 15rem;
+	height: 45px;
+	border:1px solid #D7D7D7;
+	border-radius: 10px;
+	background-color: #F7F7F7;
+	padding-left: 15px;
+	font-size: 14px;
+}
+.YZcode{
+	width:130px;
+	height: 35px;
+	background-color: red;
+	color: white;
+	text-align: center;
+	line-height: 20px;
+	border-radius: 10px;
+	font-size: 14px;
+}
+.inpSave{
+	width: 110px;
+	height: 30px;
+	color: white;
+	background-color: red;
+	font-size: 14px;
+	border-radius: 6px;
+}
+.inpReset{
+	 width: 110px;
+	 height: 30px;
+	 color: red;
+	 border: 1px solid red;background-color: white;font-size: 14px;border-radius: 6px;
+	 margin-left: 20px;
+}
+.checkboxInp{
+	margin:30px auto;
+	width: 280px;
+	text-align: left;
+	font-size:10px;
+}
+/*页面底部*/
+.footer{
+	width: 100%;
+	height: 134px;
+	background-color:#333333;
+	text-align: center;
+	font-size: 14px;
+	color: #D7D7D7;
+	line-height: 100px;
+	margin-top: 20px;
+}
