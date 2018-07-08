@@ -1,7 +1,7 @@
 document.write("<script src='js/MyAlert.js'></script>");
 document.write("<script src='js/md5.js'></script>");
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
-// var HTTPHEADER = "http://119.90.97.146:18203/";
+// var HTTPHEADER = "http://106.14.175.148:18203/";
 function httpAjax(url,retData,successHandler){
     $.ajax({
         url: url,

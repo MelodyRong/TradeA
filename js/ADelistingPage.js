@@ -2,7 +2,7 @@ document.write("<script type='text/javascript' src='js/NetworkRequest.js'></scri
 document.write("<script type='text/javascript' src='js/MyAlert.js'></script>");   //弹框
 document.write("<script type='text/javascript' src='js/loginInOrOut.js'></script>");   //登录
 document.write("<script type='text/javascript' src='js/reclassify.js'></script>");   //一二级分类
-var httpheader = "http://119.90.97.146:18203/";
+var httpheader = "http://106.14.175.148:18203/";
 
 //ajax函数
 function homePageAjax(url, retData, successFunction) {

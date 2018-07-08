@@ -4,7 +4,7 @@ document.write("<script src='js/MyAlert.js'></script>");
 document.write("<script src='js/md5.js'></script>");
 document.write("<script type='text/javascript' src='js/loginInOrOut.js'></script>");
 document.write("<script type='text/javascript' src='js/reclassify.js'></script>");    //一二级分类
-var httpheader = "http://119.90.97.146:18203/";
+var httpheader = "http://106.14.175.148:18203/";
 
 function httpAjax(url, retData, successHandler) {
     $.ajax({
@@ -26,7 +26,7 @@ function httpAjax(url, retData, successHandler) {
 // 上传图片的ajax
 function PictureAjax(formData, formSuccess) {
     $.ajax({
-        url: 'http://119.90.97.146:8095/shop/img/upload',
+        url: 'http://106.14.175.148:8095/shop/img/upload',
         type: 'POST',
         cache: false,
         data: formData,

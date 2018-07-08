@@ -1,7 +1,7 @@
 document.write('<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>');
 document.write("<script type='text/javascript' src='js/MyAlert.js'></script>");   //弹框
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
-// var httpheader = "http://119.90.97.146:18203/";
+// var httpheader = "http://106.14.175.148:18203/";
 $(function () {
     function loginOut() {
         //取消用户名改为登录

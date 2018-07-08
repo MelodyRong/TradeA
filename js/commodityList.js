@@ -5,7 +5,7 @@ document.write("<script src='js/md5.js'></script>");
 document.write("<script src='js/jqueryPagination.js'></script>");    //分页
 document.write("<script src='js/JQ_paginations.js'></script>");
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
-var httpheader = "http://119.90.97.146:18203/";
+var httpheader = "http://106.14.175.148:18203/";
 //ajax公用函数
 function homePageAjax(url, retData, successFunction) {
     $.ajax({
