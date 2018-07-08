@@ -2559,6 +2559,7 @@ function buySuccess0(data) {
                                 "sessionStr": sessStr,
                                 "userid": userId
                             });
+                            console.log(serviceChargeData);
                             httpAjax(httpheader, serviceChargeData, serviceChargeSuccess);
 
                             function serviceChargeSuccess(data) {
@@ -3344,6 +3345,7 @@ function buySuccess1(data) {
                                 "name": "queryfree",
                                 "reqbody": {
                                     "totalAmount": zPrice,
+                                    "expenseType": "101"
                                 },
                                 "sessionStr": sessStr,
                                 "userid": userId

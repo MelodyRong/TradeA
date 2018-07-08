@@ -118,7 +118,7 @@ if (BuyOrSell == 1) {
                 BuyListWrap.append('<li class="BuyListWrap_Details"><ul class="BuyListUlLi"><li>'
                     + '购入' + (i + 1)
                     + '</li><li>'
-                    + retData[i].firmName
+                    + ''
                     + '</li><li>'
                     + retData[i].listPrice
                     + '</li><li>'
@@ -145,7 +145,7 @@ if (BuyOrSell == 1) {
                     priceReady += (Number(checkedAllReady[m].accessKey)) * (Number(checkedAllReady[m].value));
                 }
             }
-            $("#span1").html(priceReady);
+            $("#span1").html((priceReady).toFixed(2));
             //遍历所有的多选框，如果有一个没选中，则全选按钮不选
             var checkAll = $(".checkAll");
             for (var i = 0; i < checkAll.length; i++) {
@@ -170,7 +170,7 @@ if (BuyOrSell == 1) {
                             price += (Number(checkAll[m].accessKey)) * (Number(checkAll[m].value));
                         }
                     }
-                    $("#span1").html(price);
+                    $("#span1").html((price).toFixed(2));
                 }
             }
             //点击确认下单
@@ -235,7 +235,7 @@ if (BuyOrSell == 1) {
 
                                     function serviceChargeSuccess(data) {    //手续费请求成功
                                         if (data.retcode == 0) {
-                                            var sxf = data.respbody.free;
+                                            var sxf = (data.respbody.free).toFixed(2);
                                             var money = $("#span1").html();
                                             var number = $("#zNumber").html();
                                             myConfirm({
@@ -379,7 +379,7 @@ if (BuyOrSell == 1) {
                         priceReady += (Number(checkedAllReady[m].accessKey)) * (Number(checkedAllReady[m].value));
                     }
                 }
-                $("#span1").html(priceReady);
+                $("#span1").html((priceReady).toFixed(2));
                 //遍历所有的多选框，如果有一个没选中，则全选按钮不选
                 var checkAll = $(".checkAll");
                 for (var i = 0; i < checkAll.length; i++) {
@@ -473,10 +473,11 @@ if (BuyOrSell == 1) {
                                         if (data.retcode == 0) {
                                             var sxf = data.respbody.free;
                                             var money = $("#span1").html();
+                                            var zMoney = (Number(money) + Number(sxf)).toFixed(2)
                                             var number = $("#zNumber").html();
                                             myConfirm({
                                                 title: '提示',
-                                                message: '是否确定下单?' + "<br>" + "总金额：" + (Number($("#span1").html()) + Number(sxf)) + "<br>" + "一次性手续费：" + sxf,
+                                                message: '是否确定下单?' + "<br>" + "总金额：" + zMoney + "<br>" + "一次性手续费：" + sxf,
                                                 callback: function () {
                                                     var QbuyData = JSON.stringify({
                                                         "userid": userId,
@@ -646,10 +647,9 @@ if (BuyOrSell == 1) {
                                 price += (Number(checkAll[m].accessKey)) * (Number(checkAll[m].value));
                             }
                         }
-                        $("#span1").html(price);
+                        $("#span1").html((price).toFixed(2));
                         //计算首付金额
                         var sfPrice = price * listDepositRate;
-                        console.log(sfPrice);
                         var FixNum = Math.floor(sfPrice * 100) / 100;
                         $("#fqfkje").html(FixNum);
                     };
@@ -723,19 +723,21 @@ if (BuyOrSell == 1) {
                                                 console.log(data);
                                                 if (data.retcode == 0) {
                                                     var sxf = data.respbody.free;
+                                                    var money = $("#span1").html();
+                                                    var zMoney = (Number(money) + Number(sxf)).toFixed(2);
                                                     for (var s = 0; s < $(".inp").length; s++) {
                                                         if ($(".inp")[s].checked == true) {
                                                             if ($(".inp")[s].value == "全款") {
                                                                 myConfirm({
                                                                     title: '提示',
-                                                                    message: '是否确定下单?' + "<br>" + "总金额：" + (Number($("#span1").html()) + Number(sxf)) + "元" + "<br>" + "一次性手续费：" + sxf + "元",
+                                                                    message: '是否确定下单?' + "<br>" + "总金额：" + zMoney + "元" + "<br>" + "一次性手续费：" + sxf + "元",
                                                                     callback: function () {
                                                                         var QsellData = JSON.stringify({
                                                                             "userid": userId,
                                                                             "ctype": "Web",
                                                                             "reqbody": {
-                                                                                "paidAmount": $("#span1").html(),
-                                                                                "price": $("#span1").html(),
+                                                                                "paidAmount": money,
+                                                                                "price": money,
                                                                                 "commodityName": commodityName,
                                                                                 "listOrderIdList": listOrderIdList,
                                                                                 "orderTotalAmount": $("#zNumber").html()
