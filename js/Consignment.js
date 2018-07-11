@@ -193,7 +193,39 @@ $(function () {
                 deal();
             } else if (firmType == 6) {   //6企业账户
                 if(isChecked == 0){   //0正在审核中
-                    myToast("您的账号正在审核中，还不能进行交易");
+                    myAlert({
+                        title: '提示',
+                        message: '您的账号正在审核中，还不能进行入库',
+                        callback: function () {
+
+                        }
+                    });
+                    return false;
+                }else if(isChecked == 1){   //已审核
+                    deal();
+                }
+            }else if (firmType == 3) {   //3企业账户
+                if(isChecked == 0){   //0正在审核中
+                    myAlert({
+                        title: '提示',
+                        message: '您的账号正在审核中，还不能进行入库',
+                        callback: function () {
+
+                        }
+                    });
+                    return false;
+                }else if(isChecked == 1){   //已审核
+                    deal();
+                }
+            }else if (firmType == 5) {   //6企业账户
+                if(isChecked == 0){   //0正在审核中
+                    myAlert({
+                        title: '提示',
+                        message: '您的账号正在审核中，还不能进行入库',
+                        callback: function () {
+
+                        }
+                    });
                     return false;
                 }else if(isChecked == 1){   //已审核
                     deal();

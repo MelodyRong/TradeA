@@ -2,7 +2,7 @@ document.write("<script src='js/MyAlert.js'></script>");
 document.write("<script type='text/javascript' src='js/loginInOrOut.js'></script>");
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
 document.write("<script type='text/javascript' src='js/reclassify.js'></script>");    //一二级分类
-var httpheader = "http://106.14.175.148:18203/";
+var httpheader = "http://119.90.97.146:18203/";
 
 function httpAjax(url, retData, successHandler) {
     $.ajax({
@@ -78,6 +78,20 @@ function closeDiv() {
     document.getElementById('maskLayer').style.display = 'none';
 }
 
+//限制价格和数量只能输入整数!(/^[0-9]+$/.test(commodityNumber))
+function NoNumber(text){
+    if(!(/^[0-9]+$/.test(text.val()))){
+        myToast("请输入数字");
+        text.val("");
+        return false;
+    }
+}
+$("#referenceNumber").change(function(){
+    NoNumber($("#referenceNumber"));
+});
+$("#referenceMoney").change(function(){
+    NoNumber($("#referenceMoney"));
+});
 //请求一级商品分类接口
 var stairData = JSON.stringify({  //一级商品分类
     "reqbody": {

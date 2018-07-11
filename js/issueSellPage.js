@@ -3,7 +3,7 @@ document.write("<script src='js/MyAlert.js'></script>");
 document.write("<script type='text/javascript' src='js/loginInOrOut.js'></script>");
 document.write("<script type='text/javascript' src='js/reclassify.js'></script>");    //一二级分类
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
-var httpheader = "http://106.14.175.148:18203/";
+var httpheader = "http://119.90.97.146:18203/";
 var condition;   //品相
 var MaxCount;    //持有数量
 var oriPrice;    //基础价
@@ -58,7 +58,22 @@ console.log(userID);
 //从sess中获取用户登录状态
 var loginStatus = window.sessionStorage.getItem("LOGINSTATE");
 console.log(loginStatus);
-var firmId = window.sessionStorage.getItem("FRIMID")
+var firmId = window.sessionStorage.getItem("FRIMID");
+
+//限制价格和数量只能输入整数!(/^[0-9]+$/.test(commodityNumber))
+function NoNumber(text){
+    if(!(/^[0-9]+$/.test(text.val()))){
+        myToast("请输入数字");
+        text.val("");
+        return false;
+    }
+}
+$("#referenceNumber").change(function(){
+    NoNumber($("#referenceNumber"));
+});
+$("#referenceMoney").change(function(){
+    NoNumber($("#referenceMoney"));
+});
 
 
 //根据用户信息请求用户持有商品列表
@@ -119,7 +134,6 @@ function aaa() {
         "sessionStr": sessionStr
     });
     httpAjax(httpheader, referencePriceData, referencePriceSuccess);
-
     function referencePriceSuccess(data) {
         console.log(data);
         if (data.retcode == 0) {

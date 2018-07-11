@@ -2,8 +2,7 @@ document.write("<script type='text/javascript' src='js/NetworkRequest.js'></scri
 document.write("<script type='text/javascript' src='js/MyAlert.js'></script>");   //弹框
 document.write("<script type='text/javascript' src='js/loginInOrOut.js'></script>");   //登录
 document.write("<script type='text/javascript' src='js/reclassify.js'></script>");   //一二级分类
-var httpheader = "http://106.14.175.148:18203/";
-
+var httpheader = "http://119.90.97.146:18203/";
 //ajax函数
 function homePageAjax(url, retData, successFunction) {
     $.ajax({
@@ -20,7 +19,6 @@ function homePageAjax(url, retData, successFunction) {
         }
     })
 }
-
 function loginOut() {
     //取消用户名改为登录
     $("#loginstate").html("登录");
@@ -45,7 +43,6 @@ function loginOut() {
     $("#register").css("display", "block");
     $("#mycentent05").css("display", "block");
 }
-
 var sessionStr = window.sessionStorage.getItem("SESSIONSTR");   //sessionStr
 var userId = window.sessionStorage.getItem("USERID");    //userId
 var frimId = window.sessionStorage.getItem("FRIMID");    //frimId
@@ -115,34 +112,36 @@ if (BuyOrSell == 1) {
             var retData = data.respbody.arrayList;
             var BuyListWrap = $("#BuyListWrap");
             for (var i = 0; i < retData.length; i++) {
+                if(retData[i].firmName == null){
+                    retData[i].firmName == "";
+                }
                 BuyListWrap.append('<li class="BuyListWrap_Details"><ul class="BuyListUlLi"><li>'
                     + '购入' + (i + 1)
                     + '</li><li>'
-                    + ''
+                    + retData[i].firmName
                     + '</li><li>'
                     + retData[i].listPrice
-                    + '</li><li>'
+                    + '</li><li class="Quanity">'
                     + retData[i].quantity
                     + '</li><li><input type="checkbox" name="checkdAll" class="checkAll" checked="checked" accesskey="'
-                    + retData[i].quantity
+                    + retData[i].orderID
                     + '" value="'
                     + retData[i].listPrice
                     + '"></li></ul></li>');
             }
-            //计算数量和金额以及全选框的选择
+            //计算数量
             var quantityReady = 0;
-            var checkedAllReady = $(".checkAll");
-            for (var l = 0; l < checkedAllReady.length; l++) {
-                quantityReady += Number(checkedAllReady[l].accessKey);
+            var Quanity = $(".Quanity");
+            for (var l = 0; l < Quanity.length; l++) {
+                quantityReady += Number(Quanity[l].innerHTML);
             }
             $("#zNumber").html(quantityReady);
             //计算总金额
+            var checkedAllReady = $(".checkAll");
             var priceReady = 0;
             for (var m = 0; m < checkedAllReady.length; m++) {
                 if (checkedAllReady[m].checked == true) {
-                    console.log(Number(checkedAllReady[m].accessKey));
-                    console.log(Number(checkedAllReady[m].value));
-                    priceReady += (Number(checkedAllReady[m].accessKey)) * (Number(checkedAllReady[m].value));
+                    priceReady += (Number(Quanity[m].innerHTML)) * (Number(checkedAllReady[m].value));
                 }
             }
             $("#span1").html((priceReady).toFixed(2));
@@ -157,9 +156,9 @@ if (BuyOrSell == 1) {
                     //遍历所有的复选框，如果有一个checked为false，则全选的checked也为false
                     //计算数量
                     var quantity = 0;
-                    for (var k = 0; k < checkAll.length; k++) {
+                    for (var k = 0; k < Quanity.length; k++) {
                         if (checkAll[k].checked == true) {
-                            quantity += Number(checkAll[k].accessKey);
+                            quantity += Number(Quanity[k].innerHTML);
                         }
                     }
                     $("#zNumber").html(quantity);
@@ -167,7 +166,7 @@ if (BuyOrSell == 1) {
                     var price = 0;
                     for (var m = 0; m < checkAll.length; m++) {
                         if (checkAll[m].checked == true) {
-                            price += (Number(checkAll[m].accessKey)) * (Number(checkAll[m].value));
+                            price += (Number(Quanity[m].innerHTML)) * (Number(checkAll[m].value));
                         }
                     }
                     $("#span1").html((price).toFixed(2));
@@ -193,12 +192,14 @@ if (BuyOrSell == 1) {
                             return false;
                         }
                         var listOrderIdList = [];
-                        var orderIdList = data.respbody.arrayList;
-                        for (var d = 0; d < orderIdList.length; d++) {   //循环得到listOrderID
-                            var listList = {};
-                            listList.listOrderId = orderIdList[d].orderID;
-                            listOrderIdList.push(listList);
+                        for (var d = 0; d < checkAll.length; d++) {   //循环得到listOrderID
+                            if(checkAll[d].checked == true){
+                                var listList = {};
+                                listList.listOrderId = checkAll[d].accessKey;
+                                listOrderIdList.push(listList);
+                            }
                         }
+                        console.log(listOrderIdList);
                         var addressDatailData = JSON.stringify({    //判断是否完善信息
                             "ctype": "Web",
                             "name": "queryAddr",
@@ -262,7 +263,7 @@ if (BuyOrSell == 1) {
                                                         if (data2.retcode == 0) {
                                                             myToast("支付成功,请到个人中心-我的售出中查看");
                                                             setInterval(function () {
-                                                                // window.location.href = "MyCenter.html";
+                                                                window.location.href = "MyCenter.html";
                                                             }, 2000)
                                                         } else {
                                                             if (data2.retcode == -17401) {
@@ -352,36 +353,31 @@ if (BuyOrSell == 1) {
                         + retData[i].firmName
                         + '</li><li>'
                         + retData[i].listPrice
-                        + '</li><li>'
+                        + '</li><li class="Quanity">'
                         + retData[i].quantity
                         + '</li><li><input type="checkbox" name="checkdAll" class="checkAll" checked="checked" accesskey="'
-                        + retData[i].quantity
+                        + retData[i].orderID
                         + '" value="'
                         + retData[i].listPrice
-                        + '" title="'
-                        + retData[i].orderID
                         +'"></li></ul></li>');
                 }
-                //计算数量，金额
                 //计算数量
                 var quantityReady = 0;
-                var checkedAllReady = $(".checkAll");
-                for (var l = 0; l < checkedAllReady.length; l++) {
-                    quantityReady += Number(checkedAllReady[l].accessKey);
+                var Quanity = $(".Quanity");
+                var checkAll = $(".checkAll");
+                for (var l = 0; l < Quanity.length; l++) {
+                    quantityReady += Number(Quanity[l].innerHTML);
                 }
                 $("#zNumber").html(quantityReady);
                 //计算总金额
                 var priceReady = 0;
-                for (var m = 0; m < checkedAllReady.length; m++) {
-                    if (checkedAllReady[m].checked == true) {
-                        console.log(Number(checkedAllReady[m].accessKey));
-                        console.log(Number(checkedAllReady[m].value));
-                        priceReady += (Number(checkedAllReady[m].accessKey)) * (Number(checkedAllReady[m].value));
+                for (var m = 0; m < checkAll.length; m++) {
+                    if (checkAll[m].checked == true) {
+                        priceReady += (Number(Quanity[m].innerHTML)) * (Number(checkAll[m].value));
                     }
                 }
                 $("#span1").html((priceReady).toFixed(2));
                 //遍历所有的多选框，如果有一个没选中，则全选按钮不选
-                var checkAll = $(".checkAll");
                 for (var i = 0; i < checkAll.length; i++) {
                     checkAll[i].onchange = function () {
                         //如果当前checked为false，则全选checked的为false
@@ -393,7 +389,7 @@ if (BuyOrSell == 1) {
                         var quantity = 0;
                         for (var k = 0; k < checkAll.length; k++) {
                             if (checkAll[k].checked == true) {
-                                quantity += Number(checkAll[k].accessKey);
+                                quantity += Number(Quanity[k].innerHTML);
                             }
                         }
                         $("#zNumber").html(quantity);
@@ -401,7 +397,7 @@ if (BuyOrSell == 1) {
                         var price = 0;
                         for (var m = 0; m < checkAll.length; m++) {
                             if (checkAll[m].checked == true) {
-                                price += (Number(checkAll[m].accessKey)) * (Number(checkAll[m].value));
+                                price += (Number(Quanity[m].innerHTML)) * (Number(checkAll[m].value));
                             }
                         }
                         $("#span1").html(price);
@@ -429,9 +425,9 @@ if (BuyOrSell == 1) {
                         var listOrderIdList = [];
                         for(var d=0;d<$(".checkAll").length;d++){
                             if($(".checkAll")[d].checked == true){
-                                console.log($(".checkAll")[d].title);
+                                console.log($(".checkAll")[d].accessKey);
                                 var listList = {};
-                                listList.listOrderId = String($(".checkAll")[d].title);
+                                listList.listOrderId = String($(".checkAll")[d].accessKey);
                                 listOrderIdList.push(listList);
                             }
                         }
@@ -584,33 +580,26 @@ if (BuyOrSell == 1) {
                         + retData[i].firmName
                         + '</li><li>'
                         + retData[i].listPrice
-                        + '</li><li>'
+                        + '</li><li class="Quantity">'
                         + retData[i].quantity
                         + '</li><li><input type="checkbox" name="checkdAll" class="checkAll" checked="checked" accesskey="'
-                        + retData[i].quantity
+                        + retData[i].orderID
                         + '"value="'
                         + retData[i].listPrice
                         + '"></li></ul></li>');
                 }
-                //保存listOrderID
-                var listOrderIdList = [];
-                var orderIdList = data.respbody.arrayList;
-                for (var d = 0; d < orderIdList.length; d++) {
-                    var listList = {};
-                    listList.listOrderId = String(orderIdList[d].orderID);
-                    listOrderIdList.push(listList);
-                }
                 //计算数量，金额等
                 var quantityReady = 0;    //计算数量
-                var checkedAllReady = $(".checkAll");
-                for (var l = 0; l < checkedAllReady.length; l++) {
-                    quantityReady += Number(checkedAllReady[l].accessKey);
+                var Quantity = $(".Quantity");
+                var checkAll = $(".checkAll");
+                for (var l = 0; l < Quantity.length; l++) {
+                    quantityReady += Number(Quantity[l].innerHTML);
                 }
                 $("#zNumber").html(quantityReady);
                 var priceReady = 0;    //计算总金额
-                for (var m = 0; m < checkedAllReady.length; m++) {
-                    if (checkedAllReady[m].checked == true) {
-                        priceReady += (Number(checkedAllReady[m].accessKey)) * (Number(checkedAllReady[m].value));
+                for (var m = 0; m < checkAll.length; m++) {
+                    if (checkAll[m].checked == true) {
+                        priceReady += (Number(Quantity[m].innerHTML)) * (Number(checkAll[m].value));
                     }
                 }
                 $("#span1").html(priceReady);
@@ -618,10 +607,8 @@ if (BuyOrSell == 1) {
                 var FixNum = Math.floor(sfPriceReadey * 100) / 100;
                 $("#fqfkje").html(FixNum);
                 //单选框发生改变时，当前的复选框没有被选中则全选按钮不选，如果当前的复选框被选中，则遍历所有的复选框是否被选中，如果都被选中，则全选按钮被选中
-                var checkAll = $(".checkAll");
                 for(var i=0;i<checkAll.length;i++){
                     checkAll[i].onchange = function () {
-                        console.log(this.checked);
                         //如果当前checked为false，则全选checked的为false
                         if (this.checked == false) {
                             $("#checkAll").prop("checked", false);
@@ -636,7 +623,7 @@ if (BuyOrSell == 1) {
                         var quantity = 0;
                         for (var k = 0; k < checkAll.length; k++) {
                             if (checkAll[k].checked == true) {
-                                quantity += Number(checkAll[k].accessKey);
+                                quantity += Number(Quantity[k].innerHTML);
                             }
                         }
                         $("#zNumber").html(quantity);
@@ -644,7 +631,7 @@ if (BuyOrSell == 1) {
                         var price = 0;
                         for (var m = 0; m < checkAll.length; m++) {
                             if (checkAll[m].checked == true) {
-                                price += (Number(checkAll[m].accessKey)) * (Number(checkAll[m].value));
+                                price += (Number(Quantity[m].innerHTML)) * (Number(checkAll[m].value));
                             }
                         }
                         $("#span1").html((price).toFixed(2));
@@ -686,6 +673,16 @@ if (BuyOrSell == 1) {
                             if (chaestVal == "") {
                                 myToast("请选择商品");
                             } else {
+                                //保存listOrderID
+                                var listOrderIdList = [];
+                                for (var d = 0; d < checkAll.length; d++) {
+                                    if(checkAll[d].checked == true){
+                                        var listList = {};
+                                        listList.listOrderId = String(checkAll[d].accessKey);
+                                        listOrderIdList.push(listList);
+                                    }
+                                }
+                                console.log(listOrderIdList);
                                 //请求完善信息接口
                                 var addressDatailData = JSON.stringify({    //判断是否完善信息
                                     "ctype": "Web",
@@ -740,11 +737,12 @@ if (BuyOrSell == 1) {
                                                                                 "price": money,
                                                                                 "commodityName": commodityName,
                                                                                 "listOrderIdList": listOrderIdList,
-                                                                                "orderTotalAmount": $("#zNumber").html()
+                                                                                "orderTotalAmount": money
                                                                             },
                                                                             "name": "onekeyListTradeBuy",
                                                                             "sessionStr": sessionStr
                                                                         });
+                                                                        console.log(QsellData);
                                                                         homePageAjax(httpheader, QsellData, QsellSuccess);
                                                                         function QsellSuccess(data) {
                                                                             if (data.retcode == 0) {
@@ -778,13 +776,15 @@ if (BuyOrSell == 1) {
                                                                                 "price": $("#span1").html(),
                                                                                 "commodityName": commodityName,
                                                                                 "listOrderIdList": listOrderIdList,
-                                                                                "orderTotalAmount": $("#zNumber").html()
+                                                                                "orderTotalAmount": $("#span1").html()
                                                                             },
                                                                             "name": "onekeyListTradeBuy",
                                                                             "sessionStr": sessionStr
                                                                         });
+                                                                        console.log(fsellData);
                                                                         homePageAjax(httpheader, fsellData, fsellSuccess);
                                                                         function fsellSuccess(data) {
+                                                                            console.log(data);
                                                                             if (data.retcode == 0) {
                                                                                 myToast("支付成功,请到个人中心-我的购入中查看");
                                                                                 setInterval(function () {

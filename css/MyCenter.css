@@ -108,7 +108,15 @@
 	margin-bottom: 20px;
 }
 
-
+.checkboxInp{
+	margin-top: 30px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+#UserRiskQ,#UserRiskG{
+	display: inline-block;
+	width: auto;
+}
 
 
 
@@ -189,15 +197,23 @@
 .recharge,.deposit{
 	float: left;
 	width: 49%;
+	text-align: left;
+	font-size: 18px;
 	/*height: 100%;*/
 }
 .usable span,.freeze span{
 	display: inline-block;
 	width: 40%;
 }
-.recharge,.deposit{
-	text-align: left;
-	font-size: 18px;
+.depositUl{
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	display: flex;
+	border-top: 1px solid #D7D7D7;
+}
+.depositUl li{
+	border-left: 1px solid #D7D7D7;
 }
 .recharge_money span,.deposit_money span{
 	display: inline-block;

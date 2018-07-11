@@ -1,7 +1,7 @@
 document.write("<script src='js/MyAlert.js'></script>");
 document.write("<script src='js/md5.js'></script>");
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
-var httpheader = "http://106.14.175.148:18203/";
+var httpheader = "http://119.90.97.146:18203/";
 var FromWhere;
 $(function(){
     function registerPageAjax(url,retData,successFunction){
@@ -152,11 +152,6 @@ $(function(){
         var UserprivacyChecked = $("#Userprivacy").prop("checked");
         if(UserprivacyChecked != true){
             myToast('请阅读并选择喝彩艺术商城隐私政策');
-            return false;
-        }
-        var UserriskChecked = $("#Userrisk").prop("checked");
-        if(UserriskChecked != true){
-            myToast('请阅读并选择喝彩艺术商城风险管理办法');
             return false;
         }
         //请求注册

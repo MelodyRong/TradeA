@@ -3,7 +3,7 @@ document.write("<script type='text/javascript' src='js/loginInOrOut.js'></script
 document.write("<script type='text/javascript' src='js/reclassify.js'></script>");
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
 document.write("<script src='js/jqueryPagination.js'></script>");    //分页
-// var httpheader = "http://106.14.175.148:18203/";
+// var httpheader = "http://119.90.97.146:18203/";
 $(function(){
     //ajax函数
     function homePageAjax(url,retData,successFunction){

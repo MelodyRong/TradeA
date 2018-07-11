@@ -29,14 +29,7 @@
             <li class="top_dg_right_list" id="issueSell" style="display: none;"><a href="issueSellPage.html">发布售出</a>
             </li>
             <li class="top_dg_right_list" id="issueSellS" style="display: none;">|</li>
-            <li class="top_dg_right_list DownloadLink" id="DownloadLink">
-                <div class="download">下载移动端APP</div>
-                <div class="downloadApp">
-                    <a href="https://itunes.apple.com/cn/app/%E5%96%9D%E5%BD%A9%E8%89%BA%E6%9C%AF%E5%95%86%E5%9F%8E/id1385313575?mt=8"
-                       style="color: blue;">下载iOS端应用</a>
-                    <a href="" style="color: blue;">下载安卓端应用</a>
-                </div>
-            </li>
+            <li class="top_dg_right_list DownloadLink"><a href="downLoadAPP.html" style="color: red">下载移动端APP</a></li>
         </ul>
     </div>
 </div>
@@ -45,7 +38,7 @@
 <div class="search">
     <div class="search_top w clearfix">
         <div class="search_top_left">
-            <img src="img/log.jpg" style="width: 100%">
+            <img src="img/pc.png">
         </div>
         <div class="search_top_right">
             <button class="search_button">搜索</button>
@@ -178,11 +171,31 @@
                 <label for="">银行名称：</label>
                 <input type="text" class="forinp" placeholder="请输入您的银行卡账号所属银行" id="BelongsBank"/>
                 <hr/>
+                <label for="">银行卡属地：</label>
+                <div class="BelongsBank" style="display: inline">
+                    <label for="" style="margin: 0;width: 100px;">所属省份：</label>
+                    <select name="" id="BelongsBankProvinceG" onchange="doProvAndCityRelationG();" class="forinp" placeholder="请选择银行卡所属省份" style="width: 10rem">
+                        <option id="chooseProG" value="-1">请选择您所在省份</option>
+                    </select>
+                    <label for="" style="margin: 0;width: 100px;">所属市区:</label>
+                    <select name="" id="BelongsBankCityG" class="forinp" placeholder="请选择银行卡所属市" style="width: 10rem">
+                        <option id='chooseCityG' value='-1'>请选择您所在城市</option>
+                    </select>
+                    <span style="color: red;">（请准确填写，以免影响提现）</span>
+                </div>
+                <hr/>
                 <label for="">收货地址</label>
                 <input type="text" class="forinp" style="width: 30rem;" placeholder="请输入您常用收货地址" id="ShippingAddress"/>
                 <hr/>
                 <div class="inpbtn">
                     <input type="submit" value="提交" id="submit"/>
+                </div>
+                <div class="checkboxInp">
+                    <div>
+                        <input type="checkbox" checked id="UserriskG"/>
+                        <span>我已阅读并同意</span>
+                        <a href="riskManagement.html" style="color: red;">《喝彩艺术商城风险管理办法》</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,13 +207,13 @@
             </div>
             <div>
                 <!--这里的姓名和绑定手机号是用户注册时的姓名手机号不可修改-->
-                <label for="">企业名称</label>
+                <label for="">企业名称:</label>
                 <input type="text" class="forinp" placeholder="请输入企业名称" id="enterpriseName"/>
                 <hr/>
-                <label for="">联系人手机号码</label>
+                <label for="">联系人手机号码:</label>
                 <input type="text" class="forinp" placeholder="请输入企业联系人手机号码" id="enterprisePhone"/>
                 <hr/>
-                <label for="">社会统一信用代码</label>
+                <label for="">社会统一信用代码:</label>
                 <input type="text" class="forinp" placeholder="请输入18位社会统一信用代码" id="creditCode"/>
                 <div class="cardWrap">
                     <form id="uploadForm05" enctype="multipart/form-data">
@@ -217,13 +230,32 @@
                 <label for="">所属银行：</label>
                 <input type="text" class="forinp" placeholder="请输入您的银行卡账号所属银行" id="CompanyBank"/>
                 <hr/>
-                <label for="">收货地址</label>
+                <label for="">银行卡所在地：</label>
+                <div class="BelongsBank" style="display: inline">
+                    <label for="" style="margin: 0;width: 100px;">所属省份：</label>
+                    <select name="" id="BelongsBankProvinceQ" onchange="doProvAndCityRelation();" class="forinp" placeholder="请选择银行卡所属省份" style="width: 10rem">
+                        <option id="choosePro" value="-1">请选择您所在省份</option>
+                    </select>
+                    <label for="" style="margin: 0;width: 100px;">所属市区:</label>
+                    <select name="" id="BelongsBankCityQ" class="forinp" placeholder="请选择银行卡所属市" style="width: 10rem">
+                        <option id='chooseCity' value='-1'>请选择您所在城市</option>
+                    </select>
+                    <span style="color: red;">（请准确填写，以免影响提现）</span>
+                </div>
+                <hr/>
+                <label for="">收货地址:</label>
                 <input type="text" class="forinp" style="width: 30rem;" placeholder="请输入您常用收货地址" id="CompanyAddress"/>
                 <hr/>
                 <div class="inpbtn">
                     <input type="submit" value="提交" id="Companysubmit"/>
                 </div>
-
+                <div class="checkboxInp">
+                    <div>
+                        <input type="checkbox" checked id="UserRiskQ"/>
+                        <span>我已阅读并同意</span>
+                        <a href="riskManagement.html" style="color: red;">《喝彩艺术商城风险管理办法》</a>
+                    </div>
+                </div>
             </div>
         </div>
         <!--修改登录密码-->
@@ -258,7 +290,7 @@
                 账户余额/充值/提现
             </div>
             <div class="bottom_play">
-                <div class="bottom_play_top clearfix">
+                <div class="bottom_play_top">
                     <div class="usable">
                         <p>全部资金/元</p>
                         <p id="Buyout"></p>
@@ -272,9 +304,9 @@
                         <p id="frozen_capital"></p>
                     </div>
                 </div>
-                <div class="bottom_play_bottom clearfix">
+                <div class="bottom_play_bottom">
                     <div class="recharge">
-                        <div class="recharge_money">
+                        <div class="recharge_money"  >
                             <p>充值金额：</p>
                             <span class="topUp">2000</span>
                             <span class="topUp">4000</span>
@@ -285,6 +317,8 @@
                         </div>
                         <input type="button" value="确认充值" id="affirm_recharge" class="btn_recharge affirm"/>
                     </div>
+                </div>
+                <div class="bottom_play_bottom clearfix">
                     <div class="deposit">
                         <div class="deposit_money">
                             <p>提现金额：</p>
@@ -296,6 +330,18 @@
                             <input type="text" placeholder="自定义金额" class="custom_money" id="custom_money"/>
                         </div>
                         <input type="button" value="确认提现" id="affirm_deposit" class="btn_deposit affirm"/>
+                    </div>
+                    <div class="deposit">
+                        <ul class="depositUl">
+                            <li>服务费率/%</li>
+                            <li>服务费下限/元</li>
+                            <li style="border-right: 1px solid #D7D7D7">服务费上限/元</li>
+                        </ul>
+                        <ul class="depositUl" style="border-bottom: 1px solid #D7D7D7;color: red;">
+                            <li>0.2</li>
+                            <li>2</li>
+                            <li style="border-right: 1px solid #D7D7D7">25</li>
+                        </ul>
                     </div>
                 </div>
             </div>

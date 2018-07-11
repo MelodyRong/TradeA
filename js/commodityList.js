@@ -5,7 +5,7 @@ document.write("<script src='js/md5.js'></script>");
 document.write("<script src='js/jqueryPagination.js'></script>");    //分页
 document.write("<script src='js/JQ_paginations.js'></script>");
 document.write("<script type='text/javascript' src='js/NetworkRequest.js'></script>");    //网络请求
-var httpheader = "http://106.14.175.148:18203/";
+var httpheader = "http://119.90.97.146:18203/";
 //ajax公用函数
 function homePageAjax(url, retData, successFunction) {
     $.ajax({
@@ -190,25 +190,25 @@ function productList_gpSuccess(data) {
                 }
                 div02Span02.innerHTML = "卖：" + retData[i].sellPrice;
                 div02Span02.style.marginLeft = "5px";
-                var br2 = document.createElement("br");
-                div02.appendChild(br2);
-                var div02Span03 = document.createElement("span");
-                div02.appendChild(div02Span03);
-                if (retData[i].highPrice == null) {
-                    retData[i].highPrice = "--";
-                }
-                div02Span03.innerHTML = "高：" + retData[i].highPrice;
-                var div02Span2 = document.createElement("span");
-                div02.appendChild(div02Span2);
-                div02Span2.innerHTML = "|";
-                div02Span2.style.marginLeft = "5px";
-                var div02Span04 = document.createElement("span");
-                div02.appendChild(div02Span04);
-                if (retData[i].lowPrice == null) {
-                    retData[i].lowPrice = "--";
-                }
-                div02Span04.innerHTML = "低：" + retData[i].lowPrice;
-                div02Span04.style.marginLeft = "5px";
+                // var br2 = document.createElement("br");
+                // div02.appendChild(br2);
+                // var div02Span03 = document.createElement("span");
+                // div02.appendChild(div02Span03);
+                // if (retData[i].highPrice == null) {
+                //     retData[i].highPrice = "--";
+                // }
+                // div02Span03.innerHTML = "高：" + retData[i].highPrice;
+                // var div02Span2 = document.createElement("span");
+                // div02.appendChild(div02Span2);
+                // div02Span2.innerHTML = "|";
+                // div02Span2.style.marginLeft = "5px";
+                // var div02Span04 = document.createElement("span");
+                // div02.appendChild(div02Span04);
+                // if (retData[i].lowPrice == null) {
+                //     retData[i].lowPrice = "--";
+                // }
+                // div02Span04.innerHTML = "低：" + retData[i].lowPrice;
+                // div02Span04.style.marginLeft = "5px";
             }else if(retData[i].isStage == 1){
                 var li = document.createElement("li");
                 li.className = "list";
@@ -297,25 +297,25 @@ function productList_gpSuccess(data) {
                 }
                 div02Span02.innerHTML = "卖：" + retData[i].sellPrice;
                 div02Span02.style.marginLeft = "5px";
-                var br2 = document.createElement("br");
-                div02.appendChild(br2);
-                var div02Span03 = document.createElement("span");
-                div02.appendChild(div02Span03);
-                if (retData[i].highPrice == null) {
-                    retData[i].highPrice = "--";
-                }
-                div02Span03.innerHTML = "高：" + retData[i].highPrice;
-                var div02Span2 = document.createElement("span");
-                div02.appendChild(div02Span2);
-                div02Span2.innerHTML = "|";
-                div02Span2.style.marginLeft = "5px";
-                var div02Span04 = document.createElement("span");
-                div02.appendChild(div02Span04);
-                if (retData[i].lowPrice == null) {
-                    retData[i].lowPrice = "--";
-                }
-                div02Span04.innerHTML = "低：" + retData[i].lowPrice;
-                div02Span04.style.marginLeft = "5px";
+                // var br2 = document.createElement("br");
+                // div02.appendChild(br2);
+                // var div02Span03 = document.createElement("span");
+                // div02.appendChild(div02Span03);
+                // if (retData[i].highPrice == null) {
+                //     retData[i].highPrice = "--";
+                // }
+                // div02Span03.innerHTML = "高：" + retData[i].highPrice;
+                // var div02Span2 = document.createElement("span");
+                // div02.appendChild(div02Span2);
+                // div02Span2.innerHTML = "|";
+                // div02Span2.style.marginLeft = "5px";
+                // var div02Span04 = document.createElement("span");
+                // div02.appendChild(div02Span04);
+                // if (retData[i].lowPrice == null) {
+                //     retData[i].lowPrice = "--";
+                // }
+                // div02Span04.innerHTML = "低：" + retData[i].lowPrice;
+                // div02Span04.style.marginLeft = "5px";
             }
         }
         var listS = $(".list");
@@ -458,25 +458,25 @@ function productList_PagingJMSuccess(data) {
                 }
                 div02Span02.innerHTML = "卖：" + retData[i].sellPrice;
                 div02Span02.style.marginLeft = "5px";
-                var br2 = document.createElement("br");
-                div02.appendChild(br2);
-                var div02Span03 = document.createElement("span");
-                div02.appendChild(div02Span03);
-                if (retData[i].highPrice == null) {
-                    retData[i].highPrice = "--";
-                }
-                div02Span03.innerHTML = "高：" + retData[i].highPrice;
-                var div02Span2 = document.createElement("span");
-                div02.appendChild(div02Span2);
-                div02Span2.innerHTML = "|";
-                div02Span2.style.marginLeft = "5px";
-                var div02Span04 = document.createElement("span");
-                div02.appendChild(div02Span04);
-                if (retData[i].lowPrice == null) {
-                    retData[i].lowPrice = "--";
-                }
-                div02Span04.innerHTML = "低：" + retData[i].lowPrice;
-                div02Span04.style.marginLeft = "5px";
+                // var br2 = document.createElement("br");
+                // div02.appendChild(br2);
+                // var div02Span03 = document.createElement("span");
+                // div02.appendChild(div02Span03);
+                // if (retData[i].highPrice == null) {
+                //     retData[i].highPrice = "--";
+                // }
+                // div02Span03.innerHTML = "高：" + retData[i].highPrice;
+                // var div02Span2 = document.createElement("span");
+                // div02.appendChild(div02Span2);
+                // div02Span2.innerHTML = "|";
+                // div02Span2.style.marginLeft = "5px";
+                // var div02Span04 = document.createElement("span");
+                // div02.appendChild(div02Span04);
+                // if (retData[i].lowPrice == null) {
+                //     retData[i].lowPrice = "--";
+                // }
+                // div02Span04.innerHTML = "低：" + retData[i].lowPrice;
+                // div02Span04.style.marginLeft = "5px";
             }else if(retData[i].isStage == 1){
                 var li = document.createElement("li");
                 li.className = "list";
@@ -565,25 +565,25 @@ function productList_PagingJMSuccess(data) {
                 }
                 div02Span02.innerHTML = "卖：" + retData[i].sellPrice;
                 div02Span02.style.marginLeft = "5px";
-                var br2 = document.createElement("br");
-                div02.appendChild(br2);
-                var div02Span03 = document.createElement("span");
-                div02.appendChild(div02Span03);
-                if (retData[i].highPrice == null) {
-                    retData[i].highPrice = "--";
-                }
-                div02Span03.innerHTML = "高：" + retData[i].highPrice;
-                var div02Span2 = document.createElement("span");
-                div02.appendChild(div02Span2);
-                div02Span2.innerHTML = "|";
-                div02Span2.style.marginLeft = "5px";
-                var div02Span04 = document.createElement("span");
-                div02.appendChild(div02Span04);
-                if (retData[i].lowPrice == null) {
-                    retData[i].lowPrice = "--";
-                }
-                div02Span04.innerHTML = "低：" + retData[i].lowPrice;
-                div02Span04.style.marginLeft = "5px";
+                // var br2 = document.createElement("br");
+                // div02.appendChild(br2);
+                // var div02Span03 = document.createElement("span");
+                // div02.appendChild(div02Span03);
+                // if (retData[i].highPrice == null) {
+                //     retData[i].highPrice = "--";
+                // }
+                // div02Span03.innerHTML = "高：" + retData[i].highPrice;
+                // var div02Span2 = document.createElement("span");
+                // div02.appendChild(div02Span2);
+                // div02Span2.innerHTML = "|";
+                // div02Span2.style.marginLeft = "5px";
+                // var div02Span04 = document.createElement("span");
+                // div02.appendChild(div02Span04);
+                // if (retData[i].lowPrice == null) {
+                //     retData[i].lowPrice = "--";
+                // }
+                // div02Span04.innerHTML = "低：" + retData[i].lowPrice;
+                // div02Span04.style.marginLeft = "5px";
             }
         }
         var listS = $(".list");
